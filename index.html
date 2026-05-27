@@ -3,328 +3,405 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matteo Scotti | Portfólio</title>
+    <meta
+      name="description"
+      content="Portfólio de Matteo Lima Scotti, estudante de Ciência da Computação e desenvolvedor de software em formação. Projetos web, APIs, IA aplicada e soluções digitais."
+    />
+    <meta name="theme-color" content="#f1eee7" />
+    <title>teo — Matteo Lima Scotti | Portfólio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Poppins:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap"
       rel="stylesheet"
     />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
-    />
-
+    <link rel="icon" href="assets/favicon.png" type="image/png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav class="navegacao">
-      <div class="nav-container">
-        <a href="#inicio" class="nav-logo"
-          ><span>&lt;</span>teo<span>&gt;</span></a
-        >
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <nav class="site-nav" aria-label="Navegação principal">
+      <div class="nav-inner">
+        <a href="#inicio" class="brand" aria-label="Ir para o início">
+          <img src="assets/logo-teo.png" alt="teo" class="brand-logo" />
+        </a>
 
         <button
-          class="menu-hamburguer"
-          id="menu-hamburguer"
+          class="nav-toggle"
+          type="button"
           aria-label="Abrir menu"
+          aria-expanded="false"
+          data-nav-toggle
         >
-          <span class="hamburguer-linha"></span>
-          <span class="hamburguer-linha"></span>
-          <span class="hamburguer-linha"></span>
+          <span></span>
+          <span></span>
         </button>
 
-        <ul class="menu" id="menu-lista">
-          <li><a href="#sobre" class="menu-link">Sobre</a></li>
-          <li><a href="#projetos" class="menu-link">Projetos</a></li>
-          <li><a href="#contatos" class="menu-link">Contato</a></li>
-        </ul>
+        <div class="nav-links" data-nav-menu>
+          <a href="#sobre">Sobre</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#stack">Stack</a>
+          <a href="#contato">Contato</a>
+          <button class="nav-command" type="button" data-open-command>
+            <span>/</span> explorar
+          </button>
+        </div>
       </div>
     </nav>
 
-    <header class="apresentacao" id="inicio" data-aos="fade-up">
-      <div class="apresentacao-conteudo">
-        <h1 class="apresentacao-titulo">
-          <span>M</span><span>a</span><span>t</span><span>t</span><span>e</span
-          ><span>o</span><span>&nbsp;</span><span>L</span><span>i</span
-          ><span>m</span><span>a</span><span>&nbsp;</span><span>S</span
-          ><span>c</span><span>o</span><span>t</span><span>t</span
-          ><span>i</span>
-        </h1>
-        <p class="apresentacao-sub-titulo">Web Developer</p>
-        <div class="apresentacao-redes">
-          <a
-            href="https://github.com/TeoZ08"
-            target="_blank"
-            aria-label="Link para o GitHub"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/matteo-lima-b55009314/"
-            target="_blank"
-            aria-label="Link para o LinkedIn"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/teoscotti_/"
-            target="_blank"
-            aria-label="Link para o Instagram"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <section class="secao-logo-animado">
-        <div class="logo-animado" data-aos="zoom-in" data-aos-duration="1000">
-          <span>&lt;</span>
-          <span>t</span>
-          <span>e</span>
-          <span>o</span>
-          <span>&gt;</span>
-        </div>
-      </section>
-
-      <section class="sobre" id="sobre" data-aos="fade-right">
-        <h2 class="section-titulo">Sobre Mim</h2>
-
-        <div class="sobre-caixa">
-          <p class="sobre-paragrafo">
-            Desenvolvedor web apaixonado por criar interfaces intuitivas e
-            soluções criativas. Atualmente, estou focado em aprimorar minhas
-            habilidades em JavaScript, React e Node.js, e estou em busca de
-            desafios que me permitam crescer e contribuir para projetos
-            inovadores.
-          </p>
+    <main id="conteudo">
+      <header class="hero section-shell" id="inicio">
+        <div class="hero-kicker reveal">
+          <span>Software / Selected Works</span>
+          <span>2025 — 2026</span>
         </div>
 
-        <div class="competencias-container">
-          <div class="competencia-grupo">
-            <h3 class="competencia-titulo">Front-End</h3>
-            <div class="competencias-grid">
-              <div class="competencia-card">
-                <i class="devicon-html5-plain-wordmark"></i><span>HTML5</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-css3-plain-wordmark"></i><span>CSS3</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-javascript-plain"></i><span>JavaScript</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-react-original-wordmark"></i
-                ><span>React</span>
-              </div>
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Matteo Lima Scotti</p>
+            <h1>Desenvolvedor de software em formação.</h1>
+            <p class="hero-description">
+              Construo soluções digitais completas — da interface ao back-end,
+              da API ao deploy — com foco em utilidade real, organização técnica
+              e experiências bem apresentadas.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+              <a href="assets/curriculo-matteo-2026.pdf" class="btn btn-ghost" download>
+                Baixar currículo
+              </a>
+              <button class="btn btn-ghost" type="button" data-open-command>
+                Abrir comandos
+              </button>
+            </div>
+
+            <div class="quick-facts" aria-label="Informações rápidas">
+              <span>Ciência da Computação — UFMS</span>
+              <span>Campo Grande, MS</span>
+              <span>Web · APIs · IA</span>
             </div>
           </div>
 
-          <div class="competencia-grupo">
-            <h3 class="competencia-titulo">Back-End & Bancos de Dados</h3>
-            <div class="competencias-grid">
-              <div class="competencia-card">
-                <i class="devicon-nodejs-plain-wordmark"></i
-                ><span>Node.js</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-mysql-plain-wordmark"></i><span>SQL</span>
+          <aside class="hero-signature reveal" aria-label="Identidade visual teo">
+            <div class="signature-card">
+              <img src="assets/logo-teo.png" alt="Logomarca teo" />
+              <div class="signature-meta">
+                <span>teo.identity</span>
+                <span>v2 / editorial portfolio</span>
               </div>
             </div>
-          </div>
+          </aside>
+        </div>
+      </header>
 
-          <div class="competencia-grupo">
-            <h3 class="competencia-titulo">Outras Ferramentas & Linguagens</h3>
-            <div class="competencias-grid">
-              <div class="competencia-card">
-                <i class="devicon-git-plain-wordmark"></i><span>Git</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-github-original-wordmark"></i
-                ><span>GitHub</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-python-plain-wordmark"></i><span>Python</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-java-plain-wordmark"></i><span>Java</span>
-              </div>
-              <div class="competencia-card">
-                <i class="devicon-c-plain"></i><span>C</span>
-              </div>
+      <section class="about section-shell" id="sobre">
+        <div class="section-heading reveal">
+          <p class="section-label">01 / Sobre</p>
+          <h2>Base técnica, produto e entrega real.</h2>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-text reveal">
+            <p>
+              Sou estudante de Ciência da Computação na UFMS e desenvolvedor de
+              software em formação. Tenho interesse em construir soluções que
+              saem do conceito e chegam ao uso: sistemas web, APIs, projetos
+              acadêmicos, aplicações com IA e produtos digitais com propósito.
+            </p>
+            <p>
+              Minha base combina JavaScript, React, Node.js, Python, Java, C,
+              bancos de dados e boas práticas de engenharia. Gosto de entender o
+              problema, organizar a solução e entregar algo funcional, claro e
+              bem acabado.
+            </p>
+          </article>
+
+          <div class="about-cards reveal">
+            <div class="metric-card">
+              <span class="metric-number">5º</span>
+              <span class="metric-label">semestre em Ciência da Computação</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-number">UFMS</span>
+              <span class="metric-label">formação acadêmica e projetos de extensão</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-number">Full</span>
+              <span class="metric-label">interfaces, APIs, dados e deploy</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="projetos" id="projetos" data-aos="fade-up">
-        <h2 class="section-titulo">Projetos</h2>
+      <section class="projects section-shell" id="projetos">
+        <div class="section-heading reveal">
+          <p class="section-label">02 / Projetos selecionados</p>
+          <h2>Projetos que mostram construção, contexto e impacto.</h2>
+        </div>
 
-        <div class="projetos-grid">
-          <div class="projeto-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="card-icones-acao">
-              <a
-                href="https://www.guincho10.com.br"
-                target="_blank"
-                aria-label="Ver site ao vivo"
-                ><i class="fa-solid fa-globe"></i
-              ></a>
-              <a
-                href="https://github.com/TeoZ08/guincho-10.git"
-                target="_blank"
-                aria-label="Ver código no GitHub"
-                ><i class="fa-brands fa-github"></i
-              ></a>
+        <div class="project-toolbar reveal" aria-label="Filtros de projetos">
+          <button class="filter-btn active" type="button" data-filter="all">Todos</button>
+          <button class="filter-btn" type="button" data-filter="ia">IA</button>
+          <button class="filter-btn" type="button" data-filter="web">Web</button>
+          <button class="filter-btn" type="button" data-filter="api">APIs</button>
+          <button class="filter-btn" type="button" data-filter="impacto">Impacto</button>
+          <button class="filter-btn" type="button" data-filter="cliente">Cliente real</button>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal featured" data-categories="ia web api impacto" data-project="jarvis">
+            <div class="project-topline">
+              <span class="project-index">01</span>
+              <span class="project-status">Online</span>
             </div>
-            <div classs="card-conteudo-principal">
-              <div class="card-icone-projeto">
-                <i class="fa-solid fa-truck-pickup"></i>
-              </div>
-              <h3 class="card-titulo-projeto">Site Institucional</h3>
-              <div class="card-tecnologias">
-                <i class="devicon-html5-plain" title="HTML5"></i>
-                <i class="devicon-css3-plain" title="CSS3"></i>
-                <i class="devicon-javascript-plain" title="JavaScript"></i>
-              </div>
+            <h3>Jarvis Acadêmico</h3>
+            <p>
+              Sistema acadêmico com IA para apoiar estudantes na consulta,
+              organização e interação com recursos inteligentes de estudo.
+            </p>
+            <div class="tag-list">
+              <span>IA</span><span>React</span><span>FastAPI</span><span>Python</span><span>Hugging Face</span>
             </div>
+            <div class="project-actions">
+              <a href="https://teoz08-jarvis-academico.hf.space" target="_blank" rel="noopener">Sistema</a>
+              <a href="https://github.com/TeoZ08/jarvis-academico.git" target="_blank" rel="noopener">Código</a>
+              <button type="button" data-open-project="jarvis">Detalhes</button>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-categories="web impacto" data-project="unapi">
+            <div class="project-topline">
+              <span class="project-index">02</span>
+              <span class="project-status">Extensão</span>
+            </div>
+            <h3>Portal UnAPI Oficinas</h3>
+            <p>
+              Portal educacional para oficinas de informática, reunindo práticas,
+              materiais e simuladores em um ambiente simples e acessível.
+            </p>
+            <div class="tag-list">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Educação</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://pet-sistemas.github.io/unapi-oficinas/" target="_blank" rel="noopener">Acessar</a>
+              <button type="button" data-open-project="unapi">Detalhes</button>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-categories="web cliente" data-project="guincho">
+            <div class="project-topline">
+              <span class="project-index">03</span>
+              <span class="project-status">Cliente real</span>
+            </div>
+            <h3>Guincho 10</h3>
+            <p>
+              Site institucional para empresa real, com foco em presença digital,
+              responsividade, SEO e conversão para contato rápido.
+            </p>
+            <div class="tag-list">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>SEO</span><span>Vercel</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://www.guincho10.com.br/" target="_blank" rel="noopener">Site</a>
+              <a href="https://github.com/TeoZ08/guincho-10.git" target="_blank" rel="noopener">Código</a>
+              <button type="button" data-open-project="guincho">Detalhes</button>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-categories="ia web impacto" data-project="aquaia">
+            <div class="project-topline">
+              <span class="project-index">04</span>
+              <span class="project-status status-progress">Em desenvolvimento</span>
+            </div>
+            <h3>AquaIA</h3>
+            <p>
+              Projeto em fase inicial voltado à sustentabilidade, usando tecnologia
+              e IA para apoiar conscientização e análise sobre consumo de água.
+            </p>
+            <div class="tag-list">
+              <span>IA</span><span>Sustentabilidade</span><span>Web App</span><span>Render</span><span>UX</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://aquaia-ufms.onrender.com/" target="_blank" rel="noopener">Protótipo</a>
+              <button type="button" data-open-project="aquaia">Detalhes</button>
+            </div>
+          </article>
+
+          <article class="project-card reveal lab-card" data-categories="web api" data-project="rosario">
+            <div class="project-topline">
+              <span class="project-index">Lab</span>
+              <span class="project-status">Experimento</span>
+            </div>
+            <h3>RosarioAPI</h3>
+            <p>
+              Projeto de laboratório com interface web e integração de recursos,
+              mantido como experimento técnico para evolução de front-end e APIs.
+            </p>
+            <div class="tag-list">
+              <span>JavaScript</span><span>API</span><span>CSS</span><span>GitHub</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/TeoZ08/RosarioAPI.git" target="_blank" rel="noopener">Código</a>
+              <button type="button" data-open-project="rosario">Detalhes</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="stack section-shell" id="stack">
+        <div class="section-heading reveal">
+          <p class="section-label">03 / Stack</p>
+          <h2>Tecnologias organizadas por função, não por vitrine.</h2>
+        </div>
+
+        <div class="stack-grid reveal">
+          <article class="stack-group">
+            <h3>Front-end</h3>
+            <p>Interfaces responsivas, componentes e experiências web.</p>
+            <div><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Vite</span></div>
+          </article>
+          <article class="stack-group">
+            <h3>Back-end</h3>
+            <p>APIs, rotas, lógica de servidor e integração cliente-servidor.</p>
+            <div><span>Node.js</span><span>Express</span><span>Python</span><span>Flask</span><span>FastAPI</span></div>
+          </article>
+          <article class="stack-group">
+            <h3>Dados & APIs</h3>
+            <p>Persistência, modelagem, consultas e comunicação entre sistemas.</p>
+            <div><span>SQL/MySQL</span><span>MongoDB</span><span>APIs REST</span></div>
+          </article>
+          <article class="stack-group">
+            <h3>IA & Produto</h3>
+            <p>Aplicações com IA, prototipação e experiências orientadas a problema.</p>
+            <div><span>IA aplicada</span><span>Integrações</span><span>RAG</span></div>
+          </article>
+          <article class="stack-group">
+            <h3>Ferramentas & Deploy</h3>
+            <p>Versionamento, publicação e entrega de projetos online.</p>
+            <div><span>Git</span><span>GitHub</span><span>Hugging Face</span><span>Render</span></div>
+          </article>
+          <article class="stack-group">
+            <h3>Base acadêmica</h3>
+            <p>Fundamentos de programação, algoritmos e resolução de problemas.</p>
+            <div><span>Java</span><span>C</span><span>Algoritmos</span><span>Estruturas de Dados</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="console-section section-shell" id="explorar">
+        <div class="section-heading reveal">
+          <p class="section-label">04 / Interativo</p>
+          <h2>Explore o portfólio como um pequeno terminal.</h2>
+        </div>
+
+        <div class="terminal reveal" aria-label="Terminal interativo do portfólio">
+          <div class="terminal-header">
+            <div class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span>teo@portfolio:~</span>
           </div>
-
-          <div class="projeto-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="card-icones-acao">
-              <a
-                href="https://teoz08.github.io/sitedoclima/"
-                target="_blank"
-                aria-label="Ver site ao vivo"
-                ><i class="fa-solid fa-globe"></i
-              ></a>
-              <a
-                href="https://github.com/TeoZ08/sitedoclima.git"
-                target="_blank"
-                aria-label="Ver código no GitHub"
-                ><i class="fa-brands fa-github"></i
-              ></a>
-            </div>
-            <div classs="card-conteudo-principal">
-              <div class="card-icone-projeto">
-                <i class="fa-solid fa-cloud-sun"></i>
-              </div>
-              <h3 class="card-titulo-projeto">Previsão do Tempo</h3>
-              <div class="card-tecnologias">
-                <i class="devicon-html5-plain" title="HTML5"></i>
-                <i class="devicon-css3-plain" title="CSS3"></i>
-                <i class="devicon-javascript-plain" title="JavaScript"></i>
-                <i class="fa-solid fa-satellite-dish" title="API"></i>
-              </div>
-            </div>
+          <div class="terminal-body" id="terminal-output" aria-live="polite">
+            <p><span class="prompt">$</span> Digite ou clique em um comando abaixo.</p>
+            <p class="terminal-line muted">Comandos disponíveis: sobre, projetos, stack, contato, cv</p>
           </div>
-
-          <div class="projeto-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="card-icones-acao">
-              <a
-                href="https://teoz08.github.io/FrontEnd-ApicomNode/"
-                target="_blank"
-                aria-label="Ver site ao vivo"
-                ><i class="fa-solid fa-globe"></i
-              ></a>
-              <a
-                href="https://github.com/TeoZ08/FrontEnd-ApicomNode.git"
-                target="_blank"
-                aria-label="Ver código no GitHub"
-                ><i class="fa-brands fa-github"></i
-              ></a>
-            </div>
-            <div classs="card-conteudo-principal">
-              <div class="card-icone-projeto">
-                <i class="fa-solid fa-address-book"></i>
-              </div>
-              <h3 class="card-titulo-projeto">Agenda de Contatos</h3>
-              <div class="card-tecnologias">
-                <i class="devicon-react-original" title="React"></i>
-                <i class="devicon-nodejs-plain" title="Node.js"></i>
-                <i class="devicon-express-original" title="Express"></i>
-                <i class="devicon-mongodb-plain" title="MongoDB"></i>
-              </div>
-            </div>
+          <div class="terminal-actions" aria-label="Comandos rápidos">
+            <button type="button" data-terminal-command="sobre">sobre</button>
+            <button type="button" data-terminal-command="projetos">projetos</button>
+            <button type="button" data-terminal-command="stack">stack</button>
+            <button type="button" data-terminal-command="contato">contato</button>
+            <button type="button" data-terminal-command="cv">cv</button>
           </div>
         </div>
       </section>
 
-      <section class="contatos" id="contatos" data-aos="fade-up">
-        <h2 class="section-titulo">Entre em Contato</h2>
-        <form class="formulario-contato" id="formulario">
-          <div class="grupo-form">
-            <label for="nome" class="sr-only">Nome</label>
-            <input
-              type="text"
-              placeholder="Seu nome"
-              class="campo-form"
-              id="nome"
-              required
-            />
+      <section class="contact section-shell" id="contato">
+        <div class="contact-panel reveal">
+          <div>
+            <p class="section-label">05 / Contato</p>
+            <h2>Vamos construir algo?</h2>
+            <p>
+              Prefiro comunicação direta. Sem formulário gigante: escolha o canal,
+              abra a conversa ou copie meu e-mail.
+            </p>
           </div>
-          <div class="grupo-form">
-            <label for="mensagem" class="sr-only">Sua mensagem</label>
-            <textarea
-              class="campo-form"
-              placeholder="Digite sua mensagem"
-              rows="6"
-              id="mensagem"
-              required
-            ></textarea>
+
+          <div class="contact-actions">
+            <button class="contact-card" type="button" data-copy="matteoscotti10@gmail.com">
+              <span>E-mail</span>
+              <strong>matteoscotti10@gmail.com</strong>
+              <small>Clique para copiar</small>
+            </button>
+            <a class="contact-card" href="https://wa.me/5567993379089" target="_blank" rel="noopener">
+              <span>WhatsApp</span>
+              <strong>(67) 99337-9089</strong>
+              <small>Abrir conversa</small>
+            </a>
+            <a class="contact-card" href="https://github.com/TeoZ08" target="_blank" rel="noopener">
+              <span>GitHub</span>
+              <strong>@TeoZ08</strong>
+              <small>Ver repositórios</small>
+            </a>
+            <a class="contact-card" href="assets/curriculo-matteo-2026.pdf" download>
+              <span>Currículo</span>
+              <strong>PDF atualizado</strong>
+              <small>Baixar arquivo</small>
+            </a>
           </div>
-          <button type="submit" class="botao-form">Enviar via WhatsApp</button>
-        </form>
+        </div>
       </section>
     </main>
 
-    <footer class="rodape">
-      <p class="rodape-texto">Obrigado pela visita!</p>
-      <div class="redes-sociais">
-        <a
-          href="https://github.com/TeoZ08"
-          target="_blank"
-          aria-label="Link para o GitHub"
-          ><i class="fa-brands fa-github"></i
-        ></a>
-        <a
-          href="https://www.linkedin.com/in/matteo-lima-b55009314/"
-          target="_blank"
-          aria-label="Link para o LinkedIn"
-          ><i class="fa-brands fa-linkedin"></i
-        ></a>
-        <a
-          href="https://www.instagram.com/teoscotti_/"
-          target="_blank"
-          aria-label="Link para o Instagram"
-          ><i class="fa-brands fa-instagram"></i
-        ></a>
-      </div>
-      <p class="rodape-autoria">
-        © 2025 Matteo Lima Scotti. Todos os direitos reservados.
-      </p>
+    <footer class="footer section-shell">
+      <img src="assets/logo-teo.png" alt="teo" />
+      <p>© 2026 Matteo Lima Scotti. Portfólio autoral, simples no código e forte na entrega.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <div class="command-overlay" data-command-overlay aria-hidden="true">
+      <div class="command-palette" role="dialog" aria-modal="true" aria-labelledby="command-title">
+        <div class="command-top">
+          <div>
+            <p class="section-label">Command Palette</p>
+            <h2 id="command-title">Para onde vamos?</h2>
+          </div>
+          <button type="button" class="command-close" data-close-command aria-label="Fechar comandos">×</button>
+        </div>
+        <label class="command-search">
+          <span class="sr-only">Buscar comando</span>
+          <input type="text" data-command-input placeholder="Digite: projetos, contato, stack..." autocomplete="off" />
+        </label>
+        <div class="command-list" data-command-list></div>
+        <p class="command-hint">Atalho: pressione <kbd>/</kbd> para abrir e <kbd>esc</kbd> para fechar.</p>
+      </div>
+    </div>
+
+    <div class="project-modal" data-project-modal aria-hidden="true">
+      <div class="project-modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+        <button type="button" class="modal-close" data-close-project aria-label="Fechar detalhes">×</button>
+        <p class="section-label" data-modal-status>Projeto</p>
+        <h2 id="modal-project-title" data-modal-title></h2>
+        <p data-modal-description></p>
+        <div class="modal-columns">
+          <div>
+            <h3>Problema</h3>
+            <p data-modal-problem></p>
+          </div>
+          <div>
+            <h3>Solução</h3>
+            <p data-modal-solution></p>
+          </div>
+        </div>
+        <div class="tag-list" data-modal-tags></div>
+        <div class="project-actions" data-modal-links></div>
+      </div>
+    </div>
+
+    <div class="toast" data-toast aria-live="polite"></div>
+
     <script src="script.js"></script>
   </body>
 </html>
