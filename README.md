@@ -6,8 +6,8 @@ Versão limpa do portfólio pessoal, com estética editorial, identidade autoral
 
 - Visual claro/editorial com textura sutil.
 - Logo `teo` aplicada como assinatura de marca.
+- Painel acadêmico com indicadores selecionados do histórico escolar.
 - Projetos principais: Jarvis Acadêmico, Portal UnAPI Oficinas, Guincho 10 e AquaIA.
-- RosarioAPI mantido como laboratório técnico, com interface publicada no GitHub Pages.
 - Filtros por categoria de projeto.
 - Modal de detalhes usando a mesma base de dados dos cards.
 - Busca/Command Palette acionada por `/` ou pela barra de pesquisa da navegação.

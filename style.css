@@ -1269,3 +1269,219 @@ kbd {
     top: calc(var(--nav-height) + 0.25rem);
   }
 }
+
+/* --- Academic dashboard refinements --- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.dashboard-card {
+  border: 1px solid var(--line);
+  background: rgba(250, 248, 242, 0.78);
+  border-radius: var(--radius-md);
+  box-shadow: 0 14px 45px rgba(23, 22, 21, 0.055);
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.dashboard-main {
+  grid-column: span 6;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stat-card {
+  grid-column: span 3;
+  min-height: 126px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.area-card,
+.focus-card {
+  grid-column: span 6;
+}
+
+.dashboard-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.4rem;
+}
+
+.dashboard-card-head p {
+  margin: 0;
+}
+
+.dashboard-card-head span,
+.progress-block small,
+.stat-label {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.progress-block strong,
+.stat-number {
+  display: block;
+  font-family: var(--display);
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.progress-block strong {
+  font-size: clamp(4rem, 8vw, 7.4rem);
+}
+
+.progress-block span {
+  display: block;
+  margin: 0.9rem 0 1.1rem;
+  color: var(--ink-soft);
+}
+
+.progress-track,
+.mini-track {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(23, 22, 21, 0.055);
+  border-radius: 999px;
+}
+
+.progress-track {
+  height: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.progress-track i,
+.mini-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ink);
+}
+
+.stat-number {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+}
+
+.bar-list {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 1.2fr) minmax(110px, 1fr) 58px;
+  gap: 0.85rem;
+  align-items: center;
+  color: var(--ink-soft);
+}
+
+.bar-row span,
+.bar-row strong {
+  font-size: 0.9rem;
+}
+
+.bar-row strong {
+  color: var(--ink);
+  text-align: right;
+}
+
+.mini-track {
+  height: 9px;
+}
+
+.focus-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.focus-list span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.52rem 0.68rem;
+  background: var(--paper-soft);
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+/* --- Command palette compact layout --- */
+.command-overlay {
+  align-items: flex-start;
+}
+
+.command-palette {
+  height: auto;
+  max-height: min(720px, calc(100vh - 2rem));
+}
+
+.command-hint {
+  font-size: 0.72rem;
+  line-height: 1.2;
+  opacity: 0.72;
+}
+
+@media (max-width: 980px) {
+  .dashboard-main,
+  .area-card,
+  .focus-card {
+    grid-column: span 12;
+  }
+
+  .stat-card {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 720px) {
+  .command-overlay {
+    align-items: center;
+    padding: 0.7rem;
+  }
+
+  .command-palette {
+    max-height: calc(100dvh - 1.4rem);
+    padding: 1rem;
+  }
+
+  .command-list {
+    max-height: 42dvh;
+  }
+
+  .command-hint {
+    margin-top: 0.45rem;
+    font-size: 0.66rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-main,
+  .area-card,
+  .focus-card,
+  .stat-card {
+    grid-column: 1;
+  }
+
+  .dashboard-main {
+    min-height: 220px;
+  }
+
+  .bar-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .bar-row strong {
+    text-align: left;
+  }
+}

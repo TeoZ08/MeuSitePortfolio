@@ -42,7 +42,7 @@
         </button>
 
         <div class="nav-links" data-nav-menu>
-          <a href="#sobre">Sobre</a>
+          <a href="#sobre">Dados</a>
           <a href="#projetos">Projetos</a>
           <a href="#stack">Stack</a>
           <a href="#contato">Contato</a>
@@ -92,37 +92,84 @@
 
       <section class="about section-shell" id="sobre">
         <div class="section-heading reveal">
-          <p class="section-label">01 / Sobre</p>
-          <h2>Ciência da Computação, web e dados</h2>
+          <p class="section-label">01 / Dados</p>
+          <h2>Painel acadêmico</h2>
         </div>
 
-        <div class="about-grid">
-          <article class="about-text reveal">
-            <p>
-              Ciência da Computação na UFMS. Trabalho com projetos web, APIs,
-              aplicações com IA, sistemas acadêmicos e entregas publicadas online.
-            </p>
-            <p>
-              Minha base passa por JavaScript, React, Node.js, Python, Java, C,
-              bancos de dados e Git. O foco é código legível, interface limpa e
-              funcionamento consistente.
-            </p>
+        <div class="dashboard-grid reveal" aria-label="Resumo acadêmico">
+          <article class="dashboard-card dashboard-main">
+            <div class="dashboard-card-head">
+              <p class="section-label">UFMS · Ciência da Computação</p>
+              <span>2024 → atual</span>
+            </div>
+            <div class="progress-block">
+              <strong>53,38%</strong>
+              <span>Carga horária cumprida</span>
+              <div class="progress-track" aria-label="53,38% da carga horária cumprida">
+                <i style="width: 53.38%"></i>
+              </div>
+              <small>1.708h de 3.200h</small>
+            </div>
           </article>
 
-          <div class="about-cards reveal" aria-label="Destaques">
-            <div class="metric-card">
-              <span class="metric-number">5º</span>
-              <span class="metric-label">Ciência da Computação · UFMS</span>
+          <article class="dashboard-card stat-card">
+            <span class="stat-number">7,95</span>
+            <span class="stat-label">CRA</span>
+          </article>
+
+          <article class="dashboard-card stat-card">
+            <span class="stat-number">5º</span>
+            <span class="stat-label">período</span>
+          </article>
+
+          <article class="dashboard-card stat-card">
+            <span class="stat-number">280h</span>
+            <span class="stat-label">atividades e extensão</span>
+          </article>
+
+          <article class="dashboard-card stat-card">
+            <span class="stat-number">4º</span>
+            <span class="stat-label">vestibular UFMS</span>
+          </article>
+
+          <article class="dashboard-card area-card">
+            <div class="dashboard-card-head">
+              <p class="section-label">Eixos cursados</p>
+              <span>carga concluída</span>
             </div>
-            <div class="metric-card">
-              <span class="metric-number">UFMS</span>
-              <span class="metric-label">universidade, pesquisa e extensão</span>
+            <div class="bar-list">
+              <div class="bar-row">
+                <span>Matemática e teoria</span>
+                <div class="mini-track"><i style="width: 100%"></i></div>
+                <strong>544h</strong>
+              </div>
+              <div class="bar-row">
+                <span>Programação e algoritmos</span>
+                <div class="mini-track"><i style="width: 75%"></i></div>
+                <strong>408h</strong>
+              </div>
+              <div class="bar-row">
+                <span>Software e dados</span>
+                <div class="mini-track"><i style="width: 31%"></i></div>
+                <strong>170h</strong>
+              </div>
             </div>
-            <div class="metric-card">
-              <span class="metric-number">Full</span>
-              <span class="metric-label">front-end, back-end e publicação</span>
+          </article>
+
+          <article class="dashboard-card focus-card">
+            <div class="dashboard-card-head">
+              <p class="section-label">Agora</p>
+              <span>disciplinas em curso</span>
             </div>
-          </div>
+            <div class="focus-list">
+              <span>Inteligência Artificial</span>
+              <span>Compiladores</span>
+              <span>Computação Gráfica</span>
+              <span>Programação Paralela</span>
+              <span>Sistemas Operacionais</span>
+              <span>Métodos Numéricos</span>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -142,12 +189,6 @@
         </div>
 
         <div class="projects-grid reveal" data-projects-grid></div>
-
-        <div class="lab-strip reveal">
-          <span>Laboratório técnico</span>
-          <a href="https://teoz08.github.io/RosarioAPI/" target="_blank" rel="noopener">RosarioAPI</a>
-          <small>Interface publicada no GitHub Pages.</small>
-        </div>
       </section>
 
       <section class="stack section-shell" id="stack">
@@ -174,7 +215,7 @@
           </article>
           <article class="stack-group">
             <h3>Fundamentos e deploy</h3>
-            <p>Base técnica, Git e deploy.</p>
+            <p>Fundamentos, versionamento e publicação.</p>
             <div><span>Java</span><span>C</span><span>Git/GitHub</span><span>Hugging Face</span><span>Render</span></div>
           </article>
         </div>
@@ -235,7 +276,7 @@
           <input type="text" data-command-input placeholder="Digite:" autocomplete="off" />
         </label>
         <div class="command-list" data-command-list></div>
-        <p class="command-hint"><kbd>/</kbd> abre · <kbd>esc</kbd> fecha</p>
+        <p class="command-hint">Atalho: <kbd>/</kbd> · <kbd>esc</kbd></p>
       </div>
     </div>
 

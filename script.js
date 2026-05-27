@@ -244,15 +244,14 @@ function initProjectFilters() {
 }
 
 const commands = [
-  { id: "sobre", title: "Sobre", description: "Perfil e áreas de trabalho.", action: () => scrollToSection("sobre") },
-  { id: "projetos", title: "Projetos", description: "Lista de trabalhos publicados.", action: () => scrollToSection("projetos") },
+  { id: "dados", title: "Dados", description: "Resumo acadêmico.", action: () => scrollToSection("sobre") },
+  { id: "projetos", title: "Projetos", description: "Projetos publicados.", action: () => scrollToSection("projetos") },
   { id: "stack", title: "Stack", description: "Tecnologias usadas nos projetos.", action: () => scrollToSection("stack") },
   { id: "contato", title: "Contato", description: "E-mail, WhatsApp, GitHub e currículo.", action: () => scrollToSection("contato") },
   { id: "jarvis", title: "Jarvis Acadêmico", description: "Sistema online.", action: () => openExternal("https://teoz08-jarvis-academico.hf.space") },
   { id: "aquaia", title: "AquaIA", description: "Protótipo no Render.", action: () => openExternal("https://aquaia-ufms.onrender.com/") },
   { id: "unapi", title: "Portal UnAPI", description: "Oficinas de informática.", action: () => openExternal("https://pet-sistemas.github.io/unapi-oficinas/") },
   { id: "guincho", title: "Guincho 10", description: "Site institucional.", action: () => openExternal("https://www.guincho10.com.br/") },
-  { id: "rosario", title: "RosarioAPI", description: "Interface no GitHub Pages.", action: () => openExternal("https://teoz08.github.io/RosarioAPI/") },
   { id: "email", title: "Copiar e-mail", description: EMAIL, action: () => copyText(EMAIL) },
   { id: "whatsapp", title: "WhatsApp", description: "Abrir conversa.", action: () => openExternal(WHATSAPP_URL) },
   { id: "github", title: "GitHub", description: "Repositórios públicos.", action: () => openExternal("https://github.com/TeoZ08") },
