@@ -10,7 +10,7 @@ const projects = [
     modalStatus: "Projeto em destaque / IA aplicada",
     title: "Jarvis Acadêmico",
     description:
-      "Sistema acadêmico com IA para apoiar estudantes na consulta, organização e interação com recursos inteligentes de estudo.",
+      "Sistema acadêmico com IA para consulta e organização de materiais.",
     problem:
       "Estudantes lidam com muitos materiais, tarefas e informações dispersas. O desafio foi criar uma experiência mais centralizada para consulta e apoio acadêmico.",
     solution:
@@ -30,7 +30,7 @@ const projects = [
     modalStatus: "Projeto de impacto / Educação digital",
     title: "Portal UnAPI Oficinas",
     description:
-      "Portal educacional para oficinas de informática, reunindo práticas, materiais e simuladores em um ambiente simples e acessível.",
+      "Portal de apoio às oficinas de informática da UnAPI UFMS.",
     problem:
       "Participantes das oficinas precisavam de um ambiente simples para revisar conteúdos, treinar habilidades digitais e acessar materiais de apoio fora dos encontros.",
     solution:
@@ -47,7 +47,7 @@ const projects = [
     modalStatus: "Projeto comercial / Cliente real",
     title: "Guincho 10",
     description:
-      "Site institucional para empresa real, com foco em presença digital, responsividade, SEO e conversão para contato rápido.",
+      "Site institucional para cliente real, com foco em contato rápido e responsividade.",
     problem:
       "A empresa precisava de uma presença online clara, confiável e otimizada para transformar visitantes em contatos rápidos por WhatsApp ou ligação.",
     solution:
@@ -62,15 +62,15 @@ const projects = [
   {
     id: "aquaia",
     index: "04",
-    status: "Em desenvolvimento",
-    modalStatus: "Em desenvolvimento / Sustentabilidade",
+    status: "Protótipo",
+    modalStatus: "Sustentabilidade / IA",
     title: "AquaIA",
     description:
-      "Projeto em fase inicial voltado à sustentabilidade, usando tecnologia e IA para apoiar conscientização e análise sobre consumo de água.",
+      "Protótipo web sobre consumo de água e sustentabilidade.",
     problem:
       "O consumo de água é um tema de impacto ambiental e operacional. O desafio é transformar informação em conscientização e tomada de decisão simples.",
     solution:
-      "Protótipo web publicado no Render, estruturado para evoluir com recursos de IA, visualização de dados e experiência orientada a usuários reais.",
+      "Protótipo publicado no Render, com base para dados, interface web e recursos de IA.",
     categories: ["ia", "web", "impacto"],
     tags: ["IA", "Sustentabilidade", "Web App", "Render", "UX"],
     links: [{ label: "Protótipo", url: "https://aquaia-ufms.onrender.com/" }],
@@ -244,19 +244,19 @@ function initProjectFilters() {
 }
 
 const commands = [
-  { id: "sobre", title: "Ir para Sobre", description: "Formação, perfil técnico e foco de atuação.", action: () => scrollToSection("sobre") },
-  { id: "projetos", title: "Ver Projetos", description: "Projetos selecionados e laboratório técnico.", action: () => scrollToSection("projetos") },
-  { id: "stack", title: "Ver Stack", description: "Tecnologias organizadas por função.", action: () => scrollToSection("stack") },
-  { id: "contato", title: "Ir para Contato", description: "E-mail, WhatsApp, GitHub e currículo.", action: () => scrollToSection("contato") },
-  { id: "jarvis", title: "Abrir Jarvis Acadêmico", description: "Sistema online com IA aplicada.", action: () => openExternal("https://teoz08-jarvis-academico.hf.space") },
-  { id: "aquaia", title: "Abrir AquaIA", description: "Protótipo em desenvolvimento no Render.", action: () => openExternal("https://aquaia-ufms.onrender.com/") },
-  { id: "unapi", title: "Abrir Portal UnAPI", description: "Portal educacional de oficinas digitais.", action: () => openExternal("https://pet-sistemas.github.io/unapi-oficinas/") },
-  { id: "guincho", title: "Abrir Guincho 10", description: "Site institucional para cliente real.", action: () => openExternal("https://www.guincho10.com.br/") },
-  { id: "rosario", title: "Abrir RosarioAPI", description: "Laboratório técnico no GitHub.", action: () => openExternal("https://github.com/TeoZ08/RosarioAPI.git") },
+  { id: "sobre", title: "Sobre", description: "Perfil e áreas de trabalho.", action: () => scrollToSection("sobre") },
+  { id: "projetos", title: "Projetos", description: "Lista de trabalhos publicados.", action: () => scrollToSection("projetos") },
+  { id: "stack", title: "Stack", description: "Tecnologias usadas nos projetos.", action: () => scrollToSection("stack") },
+  { id: "contato", title: "Contato", description: "E-mail, WhatsApp, GitHub e currículo.", action: () => scrollToSection("contato") },
+  { id: "jarvis", title: "Jarvis Acadêmico", description: "Sistema online.", action: () => openExternal("https://teoz08-jarvis-academico.hf.space") },
+  { id: "aquaia", title: "AquaIA", description: "Protótipo no Render.", action: () => openExternal("https://aquaia-ufms.onrender.com/") },
+  { id: "unapi", title: "Portal UnAPI", description: "Oficinas de informática.", action: () => openExternal("https://pet-sistemas.github.io/unapi-oficinas/") },
+  { id: "guincho", title: "Guincho 10", description: "Site institucional.", action: () => openExternal("https://www.guincho10.com.br/") },
+  { id: "rosario", title: "RosarioAPI", description: "Interface no GitHub Pages.", action: () => openExternal("https://teoz08.github.io/RosarioAPI/") },
   { id: "email", title: "Copiar e-mail", description: EMAIL, action: () => copyText(EMAIL) },
-  { id: "whatsapp", title: "Abrir WhatsApp", description: "Contato direto para conversa rápida.", action: () => openExternal(WHATSAPP_URL) },
-  { id: "github", title: "Abrir GitHub", description: "Repositórios e projetos públicos.", action: () => openExternal("https://github.com/TeoZ08") },
-  { id: "cv", title: "Baixar currículo", description: "Arquivo PDF atualizado.", action: downloadCV },
+  { id: "whatsapp", title: "WhatsApp", description: "Abrir conversa.", action: () => openExternal(WHATSAPP_URL) },
+  { id: "github", title: "GitHub", description: "Repositórios públicos.", action: () => openExternal("https://github.com/TeoZ08") },
+  { id: "cv", title: "Currículo", description: "Baixar PDF.", action: downloadCV },
 ];
 
 function initCommandPalette() {
@@ -278,8 +278,8 @@ function initCommandPalette() {
       ...results.map((command) => {
         const button = makeElement("button", { attrs: { type: "button" } });
         button.append(
-          makeElement("strong", { text: command.id }),
-          makeElement("small", { text: `${command.title} — ${command.description}` })
+          makeElement("strong", { text: command.title }),
+          makeElement("small", { text: command.description })
         );
         button.addEventListener("click", () => {
           closePalette();
@@ -294,12 +294,14 @@ function initCommandPalette() {
     render();
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
     window.setTimeout(() => input.focus(), 60);
   }
 
   function closePalette() {
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
     input.value = "";
   }
 
@@ -347,6 +349,7 @@ function openProjectModal(projectId) {
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
   qs("[data-close-project]", modal)?.focus();
 }
 
@@ -358,6 +361,7 @@ function initProjectModal() {
   const close = () => {
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
   };
 
   closeButton?.addEventListener("click", close);

@@ -40,6 +40,10 @@ body {
   overflow-x: hidden;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
 }
@@ -56,6 +60,33 @@ button {
 ::selection {
   background: var(--ink);
   color: var(--paper);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 22, 21, 0.32) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(23, 22, 21, 0.28);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(23, 22, 21, 0.46);
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 .skip-link {
@@ -160,19 +191,16 @@ button {
   letter-spacing: 0.08em;
 }
 
-.nav-links a,
-.nav-command {
+.nav-links a {
   position: relative;
   border: 0;
   background: transparent;
   padding: 0.65rem 0;
   color: var(--ink);
   text-decoration: none;
-  cursor: pointer;
 }
 
-.nav-links a::after,
-.nav-command::after {
+.nav-links a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -183,19 +211,45 @@ button {
   transition: width 0.24s ease;
 }
 
-.nav-links a:hover::after,
-.nav-command:hover::after {
+.nav-links a:hover::after {
   width: 100%;
 }
 
-.nav-command span {
-  display: inline-grid;
-  place-items: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  margin-right: 0.35rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 7px;
+.nav-search {
+  min-width: 220px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(250, 248, 242, 0.68);
+  color: var(--muted);
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.nav-search:hover,
+.nav-search:focus-visible {
+  border-color: var(--ink);
+  background: var(--paper-soft);
+  color: var(--ink);
+  outline: none;
+}
+
+.nav-search .search-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.nav-search kbd {
+  margin-left: auto;
+  font-size: 0.72rem;
 }
 
 .nav-toggle {
@@ -802,12 +856,19 @@ button {
 .project-modal-card {
   width: min(760px, 100%);
   max-height: calc(100vh - 8rem);
-  overflow: auto;
   background: var(--paper-soft);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   padding: 1.2rem;
+}
+
+.command-palette {
+  overflow: hidden;
+}
+
+.project-modal-card {
+  overflow: auto;
 }
 
 .command-top {
@@ -853,6 +914,9 @@ button {
 .command-list {
   display: grid;
   gap: 0.55rem;
+  max-height: min(46vh, 430px);
+  overflow-y: auto;
+  padding-right: 0.35rem;
 }
 
 .command-list button {
@@ -1028,10 +1092,16 @@ kbd {
     display: flex;
   }
 
-  .nav-links a,
-  .nav-command {
+  .nav-links a {
     padding: 1rem;
     text-align: left;
+  }
+
+  .nav-search {
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    margin-top: 0.25rem;
   }
 
   .brand,
@@ -1091,5 +1161,111 @@ kbd {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Refinamento minimalista da navegação e busca */
+.site-nav {
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  pointer-events: none;
+}
+
+.nav-inner {
+  width: min(920px, calc(100% - 2rem));
+  height: 58px;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0.35rem 0.3rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(250, 248, 242, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 36px rgba(23, 22, 21, 0.08);
+  pointer-events: auto;
+}
+
+.brand {
+  width: 96px;
+  height: 44px;
+}
+
+.brand-logo {
+  width: 96px;
+  max-height: 44px;
+}
+
+.nav-links {
+  gap: 1.05rem;
+  font-size: 0.78rem;
+}
+
+.nav-search {
+  min-width: 150px;
+  height: 38px;
+  background: rgba(242, 239, 232, 0.72);
+}
+
+.command-palette {
+  width: min(640px, 100%);
+  padding: 1rem;
+}
+
+.command-top h2 {
+  font-size: clamp(2rem, 3.3vw, 2.75rem);
+}
+
+.command-search input {
+  margin: 0.85rem 0;
+  padding: 0.9rem 1rem;
+}
+
+.command-list {
+  max-height: min(34vh, 320px);
+  padding-right: 0.15rem;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.command-list:hover,
+.command-list:focus-within {
+  scrollbar-color: rgba(23, 22, 21, 0.24) transparent;
+}
+
+.command-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.command-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.command-list::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+}
+
+.command-list:hover::-webkit-scrollbar-thumb,
+.command-list:focus-within::-webkit-scrollbar-thumb {
+  background: rgba(23, 22, 21, 0.24);
+}
+
+.command-list button {
+  padding: 0.82rem 0.9rem;
+}
+
+.command-hint {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 720px) {
+  .nav-inner {
+    width: min(100% - 1rem, 100%);
+    margin-top: 0.5rem;
+  }
+
+  .nav-links {
+    top: calc(var(--nav-height) + 0.25rem);
   }
 }
