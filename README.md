@@ -1,18 +1,17 @@
 # Portfólio — Matteo Lima Scotti
 
-Versão 2 do portfólio pessoal, com estética editorial, identidade autoral `teo`, projetos selecionados e interações leves.
+Versão limpa do portfólio pessoal, com estética editorial, identidade autoral `teo`, projetos selecionados e interações discretas.
 
 ## Destaques
 
-- Visual profissional em estilo editorial/grunge sutil.
+- Visual claro/editorial com textura sutil.
 - Logo `teo` aplicada como assinatura de marca.
-- Projetos organizados por relevância: Jarvis Acadêmico, Portal UnAPI Oficinas, Guincho 10, AquaIA e RosarioAPI.
-- Filtros de projetos por categoria.
-- Modal de detalhes para cada projeto.
+- Projetos principais: Jarvis Acadêmico, Portal UnAPI Oficinas, Guincho 10 e AquaIA.
+- RosarioAPI mantido como laboratório técnico, sem competir com os projetos principais.
+- Filtros por categoria de projeto.
+- Modal de detalhes usando a mesma base de dados dos cards.
 - Command Palette acionada por `/`.
-- Terminal interativo com comandos rápidos.
-- Contato direto sem formulário pesado.
-- Currículo PDF disponível para download.
+- Contato direto por e-mail, WhatsApp, GitHub e currículo PDF.
 
 ## Estrutura
 
@@ -22,7 +21,6 @@ style.css
 script.js
 assets/
   logo-teo.png
-  logo-teo-white.png
   favicon.png
   curriculo-matteo-2026.pdf
 ```
