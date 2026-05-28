@@ -860,3 +860,56 @@ kbd {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* --- NAVBAR PILL RESTAURADA --- */
+.site-nav {
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+  pointer-events: none;
+}
+
+.nav-inner {
+  width: min(920px, calc(100% - 2rem));
+  height: 58px;
+  margin-top: 0.75rem;
+  padding: 0.3rem 0.35rem 0.3rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(250, 248, 242, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 36px rgba(23, 22, 21, 0.08);
+  pointer-events: auto;
+}
+
+.brand {
+  width: 96px;
+  height: 44px;
+}
+
+.brand-logo {
+  width: 96px;
+  max-height: 44px;
+}
+
+.nav-links {
+  gap: 1.05rem;
+  font-size: 0.78rem;
+}
+
+.nav-search {
+  min-width: 150px;
+  height: 38px;
+  background: rgba(242, 239, 232, 0.72);
+}
+
+@media (max-width: 720px) {
+  .nav-inner {
+    width: min(100% - 1rem, 100%);
+    margin-top: 0.5rem;
+  }
+
+  .nav-links {
+    top: calc(var(--nav-height) + 0.25rem);
+  }
+}
