@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfólio de Matteo Lima Scotti. Projetos de software, interfaces web, APIs, IA aplicada e painel acadêmico."
+      content="Portfólio de Matteo Lima Scotti. Projetos de software, interfaces, APIs, IA aplicada e progresso acadêmico."
     />
-    <meta name="theme-color" content="#f1eee7" />
+    <meta name="theme-color" content="#f2efe8" />
     <title>teo — Matteo Lima Scotti | Portfólio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,6 @@
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-
     <div class="grain" aria-hidden="true"></div>
 
     <nav class="site-nav" aria-label="Navegação principal">
@@ -47,9 +46,9 @@
           <a href="#projetos">Projetos</a>
           <a href="#stack">Stack</a>
           <a href="#contato">Contato</a>
-          <button class="nav-search" type="button" data-open-command aria-label="Abrir busca">
+          <button class="nav-search" type="button" data-open-command aria-label="Buscar no portfólio">
             <span class="search-icon" aria-hidden="true">⌕</span>
-            <span class="nav-search-text">Digite:</span>
+            <span>Digite:</span>
             <kbd>/</kbd>
           </button>
         </div>
@@ -65,7 +64,7 @@
         <div class="hero-grid">
           <div class="hero-copy reveal">
             <p class="eyebrow">Matteo Lima Scotti</p>
-            <h1>Software, APIs e interfaces</h1>
+            <h1>Software, APIs e interfaces.</h1>
             <p class="hero-description">
               Projetos acadêmicos, comerciais e de extensão. React, Node.js,
               Python, dados e deploy em sistemas publicados.
@@ -73,10 +72,7 @@
 
             <div class="hero-actions">
               <a href="#projetos" class="btn btn-primary">Ver projetos</a>
-              <a href="assets/curriculo-matteo-2026.pdf" class="btn btn-ghost" download>
-                Baixar currículo
-              </a>
-              
+              <a href="assets/curriculo-matteo-2026.pdf" class="btn" download>Baixar currículo</a>
             </div>
 
             <div class="quick-facts" aria-label="Informações rápidas">
@@ -100,7 +96,7 @@
           <h2>Ciência da Computação / UFMS</h2>
         </div>
 
-        <div class="academic-grid reveal">
+        <div class="academic-board reveal">
           <article class="xp-panel">
             <div class="xp-panel-head">
               <div>
@@ -115,7 +111,7 @@
             <p class="xp-note">Carga horária integralizada no histórico acadêmico.</p>
           </article>
 
-          <div class="academic-stats">
+          <div class="academic-stats" aria-label="Indicadores acadêmicos">
             <article class="stat-card">
               <span>Período</span>
               <strong>5º</strong>
@@ -132,44 +128,41 @@
               <small>complementares + extensão</small>
             </article>
           </div>
-        </div>
 
-        <div class="quest-grid reveal" aria-label="Barras de progresso acadêmico">
-          <article class="quest-card">
-            <div class="quest-head"><span>Carga horária total</span><strong>53%</strong></div>
-            <div class="xp-track"><span style="--value: 53.38%"></span></div>
-            <small>1.708h concluídas de 3.200h.</small>
-          </article>
-          <article class="quest-card">
-            <div class="quest-head"><span>Optativas</span><strong>57%</strong></div>
-            <div class="xp-track"><span style="--value: 56.7%"></span></div>
-            <small>136h cumpridas de 240h.</small>
-          </article>
-          <article class="quest-card">
-            <div class="quest-head"><span>Extensão</span><strong>31%</strong></div>
-            <div class="xp-track"><span style="--value: 31.25%"></span></div>
-            <small>100h cumpridas de 320h.</small>
-          </article>
-          <article class="quest-card complete">
-            <div class="quest-head"><span>Complementares</span><strong>100%</strong></div>
-            <div class="xp-track"><span style="--value: 100%"></span></div>
-            <small>180h cumpridas.</small>
-          </article>
-        </div>
-
-        <div class="current-track reveal" aria-label="Matérias atuais">
-          <div>
-            <p class="section-label">2026.1 / Matérias atuais</p>
-            <h3>Trilha atual</h3>
+          <div class="quest-grid" aria-label="Barras de progresso acadêmico">
+            <article class="quest-card">
+              <div class="quest-head"><span>Carga total</span><strong>53%</strong></div>
+              <div class="xp-track"><span style="--value: 53.38%"></span></div>
+              <small>1.708h de 3.200h.</small>
+            </article>
+            <article class="quest-card">
+              <div class="quest-head"><span>Optativas</span><strong>57%</strong></div>
+              <div class="xp-track"><span style="--value: 56.7%"></span></div>
+              <small>136h de 240h.</small>
+            </article>
+            <article class="quest-card">
+              <div class="quest-head"><span>Extensão</span><strong>31%</strong></div>
+              <div class="xp-track"><span style="--value: 31.25%"></span></div>
+              <small>100h de 320h.</small>
+            </article>
+            <article class="quest-card complete">
+              <div class="quest-head"><span>Complementares</span><strong>100%</strong></div>
+              <div class="xp-track"><span style="--value: 100%"></span></div>
+              <small>180h cumpridas.</small>
+            </article>
           </div>
-          <div class="subject-list compact">
-            <span>Inteligência Artificial</span>
-            <span>Compiladores I</span>
-            <span>Computação Gráfica</span>
-            <span>Programação Paralela</span>
-            <span>Sistemas Operacionais</span>
-            <span>Métodos Numéricos</span>
-            <span>Análise e Projeto de Software OO</span>
+
+          <div class="current-track" aria-label="Matérias atuais">
+            <p class="section-label">2026.1 / Matérias atuais</p>
+            <div class="subject-list">
+              <span>Inteligência Artificial</span>
+              <span>Compiladores I</span>
+              <span>Computação Gráfica</span>
+              <span>Programação Paralela</span>
+              <span>Sistemas Operacionais</span>
+              <span>Métodos Numéricos</span>
+              <span>Análise e Projeto de Software OO</span>
+            </div>
           </div>
         </div>
       </section>
@@ -177,7 +170,7 @@
       <section class="projects section-shell" id="projetos">
         <div class="section-heading reveal">
           <p class="section-label">02 / Projetos</p>
-          <h2>Projetos publicados</h2>
+          <h2>Projetos publicados.</h2>
         </div>
 
         <div class="project-toolbar reveal" aria-label="Filtros de projetos">
@@ -190,7 +183,7 @@
         </div>
 
         <div class="projects-grid">
-          <article class="project-card featured" data-categories="ia web api impacto" data-project="jarvis">
+          <article class="project-card reveal featured" data-categories="ia web api impacto" data-project="jarvis">
             <div class="project-topline">
               <span class="project-index">01</span>
               <span class="project-status">Online</span>
@@ -210,7 +203,7 @@
             </div>
           </article>
 
-          <article class="project-card" data-categories="web impacto" data-project="unapi">
+          <article class="project-card reveal" data-categories="web impacto" data-project="unapi">
             <div class="project-topline">
               <span class="project-index">02</span>
               <span class="project-status">Extensão</span>
@@ -229,7 +222,7 @@
             </div>
           </article>
 
-          <article class="project-card" data-categories="web cliente" data-project="guincho">
+          <article class="project-card reveal" data-categories="web cliente" data-project="guincho">
             <div class="project-topline">
               <span class="project-index">03</span>
               <span class="project-status">Cliente real</span>
@@ -237,7 +230,7 @@
             <h3>Guincho 10</h3>
             <p>
               Site institucional para empresa real, com foco em presença digital,
-              responsividade, SEO e conversão para contato rápido.
+              responsividade, SEO e captação de contatos.
             </p>
             <div class="tag-list">
               <span>HTML</span><span>CSS</span><span>JavaScript</span><span>SEO</span><span>Vercel</span>
@@ -249,63 +242,53 @@
             </div>
           </article>
 
-          <article class="project-card" data-categories="ia web impacto" data-project="aquaia">
+          <article class="project-card reveal" data-categories="ia web impacto" data-project="aquaia">
             <div class="project-topline">
               <span class="project-index">04</span>
-              <span class="project-status status-progress">Em desenvolvimento</span>
+              <span class="project-status status-progress">Protótipo</span>
             </div>
             <h3>AquaIA</h3>
             <p>
-              Projeto de sustentabilidade com interface web, IA e visualização de dados para apoiar análise sobre consumo de água.
+              Projeto voltado à sustentabilidade, usando tecnologia e IA para
+              apoiar análise e conscientização sobre consumo de água.
             </p>
             <div class="tag-list">
-              <span>IA</span><span>Sustentabilidade</span><span>Web App</span><span>Render</span><span>UX</span>
+              <span>IA</span><span>Sustentabilidade</span><span>Render</span><span>UX</span><span>Web App</span>
             </div>
             <div class="project-actions">
               <a href="https://aquaia-ufms.onrender.com/" target="_blank" rel="noopener">Protótipo</a>
               <button type="button" data-open-project="aquaia">Detalhes</button>
             </div>
           </article>
-
         </div>
       </section>
 
       <section class="stack section-shell" id="stack">
         <div class="section-heading reveal">
           <p class="section-label">03 / Stack</p>
-          <h2>Stack</h2>
+          <h2>Tecnologias.</h2>
         </div>
 
         <div class="stack-grid reveal">
           <article class="stack-group">
             <h3>Front-end</h3>
-            <p>Interfaces, componentes e páginas responsivas.</p>
+            <p>Interfaces e componentes web.</p>
             <div><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Vite</span></div>
           </article>
           <article class="stack-group">
             <h3>Back-end</h3>
-            <p>Rotas, serviços e integração cliente-servidor.</p>
+            <p>APIs e lógica de servidor.</p>
             <div><span>Node.js</span><span>Express</span><span>Python</span><span>Flask</span><span>FastAPI</span></div>
           </article>
           <article class="stack-group">
-            <h3>Dados & APIs</h3>
-            <p>Persistência, consultas e comunicação entre sistemas.</p>
-            <div><span>SQL/MySQL</span><span>MongoDB</span><span>APIs REST</span></div>
+            <h3>Dados, APIs & IA</h3>
+            <p>Dados, integrações e IA.</p>
+            <div><span>SQL/MySQL</span><span>MongoDB</span><span>APIs REST</span><span>IA aplicada</span></div>
           </article>
           <article class="stack-group">
-            <h3>IA & Produto</h3>
-            <p>Integrações, protótipos e recursos inteligentes.</p>
-            <div><span>IA aplicada</span><span>Integrações</span><span>RAG</span></div>
-          </article>
-          <article class="stack-group">
-            <h3>Ferramentas & Deploy</h3>
-            <p>Versionamento e publicação.</p>
-            <div><span>Git</span><span>GitHub</span><span>Hugging Face</span><span>Render</span></div>
-          </article>
-          <article class="stack-group">
-            <h3>Base acadêmica</h3>
-            <p>Algoritmos, estruturas de dados e linguagens de base.</p>
-            <div><span>Java</span><span>C</span><span>Algoritmos</span><span>Estruturas de Dados</span></div>
+            <h3>Fundamentos e deploy</h3>
+            <p>Base técnica, Git e deploy.</p>
+            <div><span>Java</span><span>C</span><span>Git/GitHub</span><span>Hugging Face</span><span>Render</span></div>
           </article>
         </div>
       </section>
@@ -314,8 +297,8 @@
         <div class="contact-panel reveal">
           <div>
             <p class="section-label">04 / Contato</p>
-            <h2>Contato</h2>
-            <p>E-mail, WhatsApp, GitHub e currículo.</p>
+            <h2>Contato.</h2>
+            <p>E-mail, WhatsApp, GitHub e currículo em PDF.</p>
           </div>
 
           <div class="contact-actions">
