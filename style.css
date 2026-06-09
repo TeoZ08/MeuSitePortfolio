@@ -395,14 +395,17 @@ kbd {
   padding: 2rem;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .signature-card::before {
   content: "";
   position: absolute;
   inset: 1rem;
+  z-index: 3;
   border: 1px solid rgba(23, 22, 21, 0.08);
   border-radius: calc(var(--radius-lg) - 0.75rem);
+  pointer-events: none;
 }
 
 .signature-card::after {
@@ -412,18 +415,56 @@ kbd {
   bottom: 3rem;
   width: 21rem;
   height: 21rem;
+  z-index: 1;
   border: 1px solid rgba(23, 22, 21, 0.16);
   border-radius: 50%;
+  pointer-events: none;
 }
 
-.signature-card img {
+.signature-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  transition: opacity 0.6s ease;
+}
+
+.signature-particles.is-ready { opacity: 0.72; }
+.signature-card:hover .signature-particles.is-ready { opacity: 0.9; }
+
+.signature-frame-texture {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  z-index: 0;
+  width: 146%;
+  max-width: none;
+  opacity: 0.14;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  transform: translateX(-50%) rotate(-2deg);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.signature-card:hover .signature-frame-texture {
+  opacity: 0.18;
+  transform: translateX(-50%) rotate(-2deg) scale(1.025);
+}
+
+.signature-logo {
   width: min(100%, 460px);
   justify-self: center;
+  position: relative;
+  z-index: 2;
   filter: drop-shadow(0 22px 30px rgba(23, 22, 21, 0.12));
   transform: rotate(-1.5deg);
   transition: transform 0.6s ease;
 }
-.signature-card:hover img { transform: rotate(0deg) scale(1.02); }
+.signature-card:hover .signature-logo { transform: rotate(0deg) scale(1.02); }
 
 .academic,
 .projects,
@@ -800,6 +841,7 @@ kbd {
   .academic-board { grid-template-columns: 1fr; }
   .hero-grid { min-height: auto; padding-top: 3rem; }
   .signature-card { min-height: 360px; }
+  .signature-frame-texture { top: 13%; width: 152%; }
   .project-card,
   .project-card.featured { grid-column: span 12; }
   .stack-grid { grid-template-columns: repeat(2, 1fr); }
