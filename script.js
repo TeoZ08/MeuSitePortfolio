@@ -53,6 +53,30 @@ const PROJECTS = {
     tags: ["IA", "Sustentabilidade", "Web App", "Render", "UX", "Protótipo"],
     links: [{ label: "Abrir protótipo", url: "https://aquaia-ufms.onrender.com/" }],
   },
+  useart: {
+    status: "MVP / E-commerce estático",
+    title: "useART",
+    description:
+      "MVP de e-commerce para marca de camisetas, com catálogo, carrinho persistente, checkout interno e finalização via WhatsApp.",
+    problem:
+      "A loja precisava validar uma experiência própria de compra sem começar por uma plataforma completa ou backend administrativo.",
+    solution:
+      "Aplicação React/Vite estática com seleção de variações, carrinho local, checkout por etapas e documentação clara sobre as limitações do admin local.",
+    tags: ["React", "Vite", "E-commerce", "WhatsApp", "MVP", "Cliente"],
+    links: [{ label: "Ver código", url: "https://github.com/TeoZ08/useART.git" }],
+  },
+  resumidor: {
+    status: "Ferramenta IA / Produtividade",
+    title: "ResumidorVideos",
+    description:
+      "Ferramenta com CLI, API FastAPI e interface React para resumir vídeos do YouTube com Gemini e exportar Markdown.",
+    problem:
+      "Vídeos longos de estudo exigem tempo para assistir, revisar e transformar em anotações reutilizáveis.",
+    solution:
+      "Pipeline que obtém legendas, gera resumo com Gemini, salva histórico em SQLite e exporta Markdown em formato útil para contexto.",
+    tags: ["IA", "Gemini", "FastAPI", "React", "SQLite", "Markdown"],
+    links: [{ label: "Ver código", url: "https://github.com/TeoZ08/ResumidorVideos.git" }],
+  },
 };
 
 const COMMANDS = [
@@ -65,7 +89,7 @@ const COMMANDS = [
   {
     id: "projetos",
     title: "Ver Projetos",
-    description: "Jarvis, UnAPI, Guincho 10 e AquaIA.",
+    description: "Jarvis, UnAPI, Guincho 10, AquaIA, useART e ResumidorVideos.",
     action: () => scrollToSection("projetos"),
   },
   {
@@ -79,6 +103,18 @@ const COMMANDS = [
     title: "Abrir AquaIA",
     description: "Protótipo publicado no Render.",
     action: () => window.open("https://aquaia-ufms.onrender.com/", "_blank", "noopener"),
+  },
+  {
+    id: "useart",
+    title: "Ver useART",
+    description: "MVP de e-commerce estático.",
+    action: () => window.open("https://github.com/TeoZ08/useART.git", "_blank", "noopener"),
+  },
+  {
+    id: "resumidor",
+    title: "Ver ResumidorVideos",
+    description: "Ferramenta IA com FastAPI e React.",
+    action: () => window.open("https://github.com/TeoZ08/ResumidorVideos.git", "_blank", "noopener"),
   },
   {
     id: "stack",
