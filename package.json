@@ -1,0 +1,18 @@
+{
+  "name": "matteo-arquivo-de-trabalho",
+  "private": true,
+  "version": "5.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node --check src/main.js && node --check src/data/projects.js && node --check src/scene/ArchiveArtifactScene.js && node --check src/scene/ProjectArchiveScene.js && node --check src/scene/ArchiveFolder.js && node --check src/scene/ArchiveBox.js"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}
