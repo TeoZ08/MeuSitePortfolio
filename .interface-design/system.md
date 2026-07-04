@@ -1,58 +1,93 @@
-# Sistema de interface — Portfólio teo
+# Sistema de interface — Arquivo de trabalho
 
 ## Intent
 
-Usuário: recrutador, professor, colega técnico ou potencial cliente.
-
-Tarefa principal: entender rapidamente quem é Matteo, quais projetos estão prontos e como entrar em contato.
-
-Sensação desejada: editorial, autoral, técnico e selecionado, sem aparência de landing genérica.
+- Usuário principal: recrutadores técnicos, lideranças de engenharia/produto e potenciais colaboradores.
+- Tarefa principal: reconhecer Matteo, explorar projetos reais e chegar a produto, código, currículo ou contato.
+- Sensação: arquivo de trabalho usado de verdade — material, quente, preciso e levemente indisciplinado.
+- Assinatura: caixa-arquivo 3D com quatro pastas de projeto; `teo` aparece apenas como assinatura pequena.
 
 ## Domain
 
-Portfólio, projetos, software, interfaces, APIs, IA, UFMS, currículo, command palette, terminal, identidade teo.
+Pastas, slots, lombadas, caixa, fichas, recortes, rascunhos, carimbos, código, faculdade e documentação.
 
-## Color World
+## Princípios
 
-- Papel claro quente para base editorial.
-- Preto/ink para texto e contraste.
-- Verde escuro como acento técnico.
-- Tons muted para metadados e separação.
-- Textura sutil para assinatura autoral.
+1. Matteo e os projetos são protagonistas; a marca apenas assina.
+2. Livro, arquivo e mesa de trabalho; nunca dashboard.
+3. Evidência antes de adjetivo.
+4. Capturas reais; nenhum mockup inventado.
+5. Um único canvas ligado ao arquivo de projetos; nunca um canvas por card.
+6. Todo texto e toda ação continuam em HTML.
+7. Mobile usa fallback HTML, swipe e snap, sem exigir WebGL ou hover.
+8. Movimento comunica peso e materialidade; não esconde navegação.
 
-## Signature
+## Tokens
 
-Identidade `teo` com composição editorial, command palette, terminal interativo e cards de projetos selecionados.
+### Cores
 
-## Defaults a rejeitar
+- `--paper: #e9dcc6`: fundo de papel.
+- `--paper-light: #f5ead8`: ficha e superfície elevada.
+- `--paper-bright: #fff8e9`: realce claro.
+- `--paper-deep: #cdbb9f`: borda e folha envelhecida.
+- `--ink: #1a1210`: carvão.
+- `--ink-soft: #55443c`: texto secundário.
+- `--ink-faint: #7c695f`: metadados.
+- `--red: #aa3024`: pigmento.
+- `--red-deep: #7c211a`: ação e fundo em brasa.
+- Cores dos projetos aparecem nas pastas, capturas e respectivos dossiês.
 
-- Landing genérica com hero de marketing; preferir portfolio direto e autoral.
-- Lista enorme de projetos; preferir curadoria com descrições honestas.
-- Frases motivacionais vagas; preferir problemas, soluções e links reais.
+### Tipografia
 
-## Tokens e padrões atuais
+- Editorial: Cormorant Garamond.
+- Impacto condensado: Bebas Neue.
+- Interface: Inter.
+- Metadados: IBM Plex Mono.
 
-- `--paper`, `--paper-soft`, `--paper-deep`: fundos editoriais.
-- `--ink`, `--ink-soft`, `--muted`: texto e metadados.
-- `--accent`: acento principal.
-- `--line`, `--line-strong`: divisórias e bordas.
-- `--mono`, `--sans`, `--display`: hierarquia tipográfica.
-- `--radius-lg`, `--radius-md`: raios principais.
+### Espaçamento e dimensão
 
-## Estados interativos
+- Gutter: `clamp(1.25rem, 4vw, 4.75rem)`.
+- Espaço de seção: `clamp(6rem, 11vw, 11rem)`.
+- Largura máxima: `1440px`.
+- Controles: mínimo de 44 px; ações principais com 52 px.
 
-- Filtros de projeto devem mostrar estado ativo.
-- Cards precisam manter botão de detalhes e links diretos.
-- Command palette deve abrir com `/` e fechar com `Esc`.
-- Modal de projeto deve preservar foco visual e fechamento claro.
+### Profundidade
 
-## Acessibilidade e responsividade
+A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras fortes ficam restritas à caixa 3D, às capturas reais, aos arquivos de semestre e ao modal.
 
-- Manter skip link e labels em botões de navegação.
-- Não esconder conteúdo essencial apenas em efeitos/canvas.
-- Garantir que textos dos cards caibam no mobile.
-- Preservar contraste em botões, filtros e modal.
+## Padrões
 
-## Limites
+- `.section-marker`: índice funcional de seção.
+- `.section-heading`: título editorial + introdução curta.
+- `.archive-explorer`: mecanismo central de seleção de projetos.
+- `.project-case`: captura real + resumo factual + estado atual.
+- `.project-overlay`: dossiê completo com foco retido.
+- `.project-modal-scroll`: única área rolável do dossiê; o cabeçalho pertence à caixa.
+- `.folder-transition`: continuidade visual entre a pasta extraída e o dossiê HTML.
 
-Não remover Jarvis, UnAPI, Guincho 10 ou AquaIA sem decisão explícita. Novos projetos só entram se a documentação e validação mínima estiverem coerentes.
+## Estados
+
+- Hover: deslocamento pequeno, inversão papel/carvão ou perspectiva limitada.
+- Focus: contorno vermelho de 2 px com offset.
+- Pasta ativa: permanece em seu slot e sai pelo eixo físico de extração; o botão HTML inverte para papel.
+- Arraste: `pointer capture`, resistência progressiva, volumes `Box3`, reação dos vizinhos, indicador e limite de 70%.
+- Abaixo do limite: retorno com spring, sem abrir o projeto.
+- Acima do limite: extração automática, capa abre e a captura real aparece.
+- Modal aberto: foco no fechar, página bloqueada e scroll restrito a `.project-modal-scroll`.
+- Fechamento vindo do arquivo: a camada DOM retorna ao canvas e a pasta volta à caixa.
+- WebGL indisponível: pilha de pastas em CSS/HTML no mesmo enquadramento.
+- Movimento reduzido: sem entrada, flutuação, tilt ou loop contínuo.
+
+## Responsividade
+
+- Acima de 1100 px: hero dividida entre pessoa e arquivo 3D; cases alternados.
+- 921–1100 px: hero ainda dividida, composição comprimida.
+- 681–920 px: hero e cases empilhados; navegação recolhida.
+- Até 680 px: sem WebGL; pastas usam swipe/snap e abrem o mesmo case HTML; nenhuma dependência de hover.
+
+## Conteúdo
+
+- Não usar slogans de agência, frases motivacionais ou contagens como proposta de valor.
+- Status, links, tecnologias, limites e próximos passos precisam existir nos projetos.
+- Cases são atualizados em `src/data/projects.js`.
+- Faculdade e contato ficam na estrutura semântica de `index.html`.

@@ -1,41 +1,62 @@
-# Portfólio — Matteo Lima Scotti
+# Matteo — portfólio 3D
 
-Versão 2 do portfólio pessoal, com estética editorial, identidade autoral `teo`, projetos selecionados e interações leves.
+Portfólio oficial de Matteo Lima Scotti. A página combina uma apresentação editorial com o “Arquivo Impossível”: uma caixa 3D com quatro pastas de projetos que podem ser puxadas, abertas e devolvidas ao arquivo.
 
-## Destaques
+## Stack
 
-- Visual profissional em estilo editorial/grunge sutil.
-- Logo `teo` aplicada como assinatura de marca.
-- Projetos organizados por relevância: Jarvis Acadêmico, Portal UnAPI Oficinas, Guincho 10, AquaIA, useART e ResumidorVideos.
-- Filtros de projetos por categoria.
-- Modal de detalhes para cada projeto.
-- Command Palette acionada por `/`.
-- Terminal interativo com comandos rápidos.
-- Contato direto sem formulário pesado.
-- Currículo PDF disponível para download.
+- Vite;
+- JavaScript com ES modules;
+- Three.js;
+- CSS responsivo;
+- GitHub Actions e GitHub Pages.
+
+## Desenvolvimento local
+
+Requer Node.js LTS e npm.
+
+```bash
+npm ci
+npm run dev
+```
+
+## Validação
+
+```bash
+npm run check
+npm run build
+npm run preview
+```
+
+`npm run preview` valida a saída estática gerada em `dist`. A pasta `dist` é descartável e não deve ser editada ou commitada.
+
+## GitHub Pages
+
+O repositório é publicado em:
+
+```text
+https://teoz08.github.io/MeuSitePortfolio/
+```
+
+Como o site é servido em um subdiretório, o Vite usa `base: "/MeuSitePortfolio/"`. Assets públicos utilizam `import.meta.env.BASE_URL` ou substituição de `%BASE_URL%` no HTML.
+
+Pushes na branch `main` acionam [.github/workflows/deploy.yml](.github/workflows/deploy.yml), que:
+
+1. instala dependências com `npm ci`;
+2. executa `npm run check`;
+3. gera `dist` com `npm run build`;
+4. publica o artifact pelo GitHub Pages.
+
+O deploy não depende de commitar `dist`.
 
 ## Estrutura
 
-```txt
-index.html
-style.css
-script.js
-assets/
-  logo-teo.png
-  logo-teo-white.png
-  favicon.png
-  curriculo-matteo-2026.pdf
+```text
+public/                  assets estáticos e currículo
+src/data/projects.js     conteúdo dos quatro projetos
+src/scene/               caixa, pastas e interação Three.js
+src/main.js              navegação, cases, modal e ponte DOM/WebGL
+src/styles.css           sistema visual e responsividade
+docs/                    arquitetura, QA e status final
 ```
 
-## Como rodar localmente
-
-Abra o arquivo `index.html` diretamente no navegador ou use uma extensão como Live Server no VS Code.
-
-## Projetos adicionados nesta versão
-
-- `useART`: entrou como MVP de e-commerce estático, com limitação de admin local documentada.
-- `ResumidorVideos`: entrou como ferramenta IA com CLI, FastAPI, React, SQLite e exportação Markdown.
-
-## Deploy
-
-Por ser um site estático, pode ser publicado no GitHub Pages, Vercel, Netlify ou Render Static Site.
+Não commitar `node_modules`, arquivos `.env`, tokens, credenciais ou builds locais.

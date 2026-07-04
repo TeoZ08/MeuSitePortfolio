@@ -1,417 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfólio de Matteo Lima Scotti. Projetos de software, interfaces, APIs, IA aplicada e progresso acadêmico."
+      content="Portfólio de Matteo Lima Scotti: projetos de software, IA aplicada, interfaces e experimentos 3D."
     />
-    <meta name="theme-color" content="#f2efe8" />
-    <title>teo — Matteo Lima Scotti | Portfólio</title>
+    <meta name="theme-color" content="#e9dcc6" />
+    <meta property="og:title" content="Matteo — Projetos e arquivo" />
+    <meta
+      property="og:description"
+      content="Projetos, ferramentas e experimentos de Matteo Lima Scotti."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="%BASE_URL%og-cover.png" />
+    <title>Matteo — Projetos e arquivo</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="icon" href="assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="%BASE_URL%identity/logo-teo.png" type="image/png" />
+    <script type="module" src="/src/main.js"></script>
   </head>
+
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <div class="grain" aria-hidden="true"></div>
+    <div class="paper-noise" aria-hidden="true"></div>
 
     <nav class="site-nav" aria-label="Navegação principal">
-      <div class="nav-inner">
-        <a href="#inicio" class="brand" aria-label="Ir para o início">
-          <img src="assets/logo-teo.png" alt="teo" class="brand-logo" />
-        </a>
+      <a class="nav-brand" href="#inicio" aria-label="Matteo, voltar ao início">
+        <img
+          src="%BASE_URL%identity/logo-teo.png"
+          alt=""
+          width="34"
+          height="34"
+        />
+        <span>Matteo</span>
+      </a>
 
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          data-nav-toggle
-        >
-          <span></span>
-          <span></span>
-        </button>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        data-nav-toggle
+      >
+        <span></span><span></span>
+      </button>
 
-        <div class="nav-links" data-nav-menu>
-          <a href="#painel">Painel</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#stack">Stack</a>
-          <a href="#contato">Contato</a>
-          <button class="nav-search" type="button" data-open-command aria-label="Buscar no portfólio">
-            <span class="search-icon" aria-hidden="true">⌕</span>
-            <span>Digite:</span>
-            <kbd>/</kbd>
-          </button>
-        </div>
+      <div class="nav-links" data-nav-menu>
+        <a href="#projetos">Projetos</a>
+        <a href="#faculdade">Faculdade</a>
+        <a href="#contato">Contato</a>
       </div>
     </nav>
 
     <main id="conteudo">
-      <header class="hero section-shell" id="inicio">
-        <div class="hero-kicker reveal">
-          <span>Software / Interfaces / APIs</span>
+      <header class="hero" id="inicio">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Matteo Lima Scotti · Campo Grande, MS</p>
+          <h1>Oi, sou <em>Matteo.</em></h1>
+          <p class="hero-intro">
+            Estudo Ciência da Computação e gosto de construir coisas que me ajudam a entender melhor um problema. Algumas viraram produtos, outras são ferramentas, protótipos ou experimentos que ainda estão mudando.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projetos">Ver projetos <span>↓</span></a>
+            <a class="button button-quiet" href="#contato">Contato <span>↘</span></a>
+          </div>
+          <div class="hero-footnote">
+            <span>Ciência da Computação · UFMS</span>
+            <span>6º semestre começa em agosto</span>
+          </div>
         </div>
 
-        <div class="hero-grid">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Matteo Lima Scotti</p>
-            <h1>Software, APIs e interfaces.</h1>
-            <p class="hero-description">
-              Projetos acadêmicos, comerciais e de extensão. React, Node.js,
-              Python, dados e deploy em sistemas publicados.
-            </p>
-
-            <div class="hero-actions">
-              <a href="#projetos" class="btn btn-primary">Ver projetos</a>
-              <a href="assets/curriculo-matteo-2026.pdf" class="btn" download>Baixar currículo</a>
+        <section class="archive-explorer reveal" aria-labelledby="archive-title" data-archive-shell>
+          <div class="archive-topline">
+            <div>
+              <p>ARQUIVO DE PROJETOS</p>
+              <h2 id="archive-title">Puxe uma pasta.</h2>
             </div>
+            <span class="archive-state-label" data-archive-state-label>PRONTO PARA PUXAR</span>
+          </div>
 
-            <div class="quick-facts" aria-label="Informações rápidas">
-              <span>UFMS · Ciência da Computação</span>
-              <span>Campo Grande · MS</span>
-              <span>React · Node · Python</span>
+          <div class="archive-stage">
+            <canvas data-archive-scene aria-hidden="true"></canvas>
+            <div class="archive-fallback" data-archive-fallback aria-hidden="true"></div>
+            <div class="archive-instruction" aria-hidden="true">
+              <span>Segure uma pasta</span><span>Arraste para cima</span>
+            </div>
+            <div class="archive-drag-status" data-archive-drag-status aria-hidden="true">
+              <span data-archive-drag-copy>PUXE PARA ABRIR</span>
+              <i><b data-archive-progress></b></i>
             </div>
           </div>
 
-          <aside class="hero-signature reveal" aria-label="Identidade visual teo">
-            <div class="signature-card">
-              <img class="signature-frame-texture" src="assets/frame.png" alt="" aria-hidden="true" />
-              <canvas class="signature-particles" data-signature-particles aria-hidden="true"></canvas>
-              <img class="signature-logo" src="assets/logo-teo.png" alt="Logomarca teo" />
-            </div>
-          </aside>
-        </div>
+          <div class="archive-projects" data-archive-list aria-label="Pastas de projeto"></div>
+        </section>
+
+        <a class="scroll-cue" href="#projetos"><span>role para continuar</span><i></i></a>
       </header>
 
-      <section class="academic section-shell" id="painel">
+      <section class="projects section" id="projetos">
+        <div class="section-marker reveal"><span>01</span><p>Projetos</p></div>
         <div class="section-heading reveal">
-          <p class="section-label">01 / Painel</p>
-          <h2>Ciência da Computação / UFMS</h2>
+          <h2>Projetos</h2>
+          <p>Escolhi estes porque cada um me obrigou a aprender algo diferente.</p>
         </div>
+        <div class="project-list" data-project-list></div>
+      </section>
 
-        <div class="academic-board reveal">
-          <article class="xp-panel">
-            <div class="xp-panel-head">
-              <div>
-                <p class="section-label">Progresso do curso</p>
-                <h3>1.708h / 3.200h</h3>
-              </div>
-              <strong>53,38%</strong>
-            </div>
-            <div class="xp-track big" aria-label="53,38% da carga horária concluída">
-              <span style="--value: 53.38%"></span>
-            </div>
-            <p class="xp-note">Carga horária integralizada no histórico acadêmico.</p>
-          </article>
-
-          <div class="academic-stats" aria-label="Indicadores acadêmicos">
-            <article class="stat-card">
-              <span>Período</span>
-              <strong>5º</strong>
-              <small>2026.1</small>
-            </article>
-            <article class="stat-card">
-              <span>CRA</span>
-              <strong>7,95</strong>
-              <small>coeficiente acadêmico</small>
-            </article>
-            <article class="stat-card">
-              <span>Atividades</span>
-              <strong>280h</strong>
-              <small>complementares + extensão</small>
-            </article>
+      <section class="college section" id="faculdade">
+        <div class="section-marker reveal"><span>02</span><p>Faculdade</p></div>
+        <div class="college-layout">
+          <div class="college-copy reveal">
+            <p class="eyebrow">Ciência da Computação · UFMS</p>
+            <h2>Faculdade</h2>
+            <p>Terminei o quinto semestre e começo o sexto em agosto.</p>
+            <p>
+              A graduação me dá a base; os projetos ajudam a descobrir onde essa base aguenta o uso e onde ainda preciso estudar mais.
+            </p>
           </div>
-
-          <div class="quest-grid" aria-label="Barras de progresso acadêmico">
-            <article class="quest-card">
-              <div class="quest-head"><span>Carga total</span><strong>53%</strong></div>
-              <div class="xp-track"><span style="--value: 53.38%"></span></div>
-              <small>1.708h de 3.200h.</small>
-            </article>
-            <article class="quest-card">
-              <div class="quest-head"><span>Optativas</span><strong>57%</strong></div>
-              <div class="xp-track"><span style="--value: 56.7%"></span></div>
-              <small>136h de 240h.</small>
-            </article>
-            <article class="quest-card">
-              <div class="quest-head"><span>Extensão</span><strong>31%</strong></div>
-              <div class="xp-track"><span style="--value: 31.25%"></span></div>
-              <small>100h de 320h.</small>
-            </article>
-            <article class="quest-card complete">
-              <div class="quest-head"><span>Complementares</span><strong>100%</strong></div>
-              <div class="xp-track"><span style="--value: 100%"></span></div>
-              <small>180h cumpridas.</small>
-            </article>
-          </div>
-
-          <div class="current-track" aria-label="Matérias atuais">
-            <p class="section-label">2026.1 / Matérias atuais</p>
-            <div class="subject-list">
-              <span>Inteligência Artificial</span>
-              <span>Compiladores I</span>
-              <span>Computação Gráfica</span>
-              <span>Programação Paralela</span>
-              <span>Sistemas Operacionais</span>
-              <span>Métodos Numéricos</span>
-              <span>Análise e Projeto de Software OO</span>
+          <div class="semester-file reveal">
+            <div class="semester-current">
+              <span>2026.1</span>
+              <strong>5º semestre</strong>
+              <small>concluído</small>
             </div>
+            <div class="semester-next">
+              <span>AGO / 2026</span>
+              <strong>6º semestre</strong>
+              <small>próximo</small>
+            </div>
+            <p class="semester-note">fundamentos → projetos → perguntas novas → voltar aos fundamentos</p>
+          </div>
+          <div class="learning-ledger reveal">
+            <article><span>BASE</span><h3>Algoritmos e sistemas</h3><p>Estruturas, arquitetura, matemática e teoria.</p></article>
+            <article><span>PRÁTICA</span><h3>Software que sai do editor</h3><p>Web, APIs, deploy, dados e observabilidade.</p></article>
+            <article><span>EXTENSÃO</span><h3>Tecnologia com contexto</h3><p>Ensinar pessoas idosas tornou acessibilidade uma questão concreta.</p></article>
           </div>
         </div>
       </section>
 
-      <section class="projects section-shell" id="projetos">
-        <div class="section-heading reveal">
-          <p class="section-label">02 / Projetos</p>
-          <h2>Projetos publicados.</h2>
-        </div>
-
-        <div class="project-toolbar reveal" aria-label="Filtros de projetos">
-          <button class="filter-btn active" type="button" data-filter="all">Todos</button>
-          <button class="filter-btn" type="button" data-filter="ia">IA</button>
-          <button class="filter-btn" type="button" data-filter="web">Web</button>
-          <button class="filter-btn" type="button" data-filter="api">APIs</button>
-          <button class="filter-btn" type="button" data-filter="cliente">Cliente real</button>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card reveal featured" data-categories="ia web api impacto" data-project="jarvis">
-            <div class="project-topline">
-              <span class="project-index">01</span>
-              <span class="project-status">Online</span>
-            </div>
-            <h3>Jarvis Acadêmico</h3>
-            <p>
-              Sistema acadêmico com IA para apoiar estudantes na consulta,
-              organização e interação com recursos inteligentes de estudo.
-            </p>
-            <div class="tag-list">
-              <span>IA</span><span>React</span><span>FastAPI</span><span>Python</span><span>Hugging Face</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://teoz08-jarvis-academico.hf.space" target="_blank" rel="noopener">Sistema</a>
-              <a href="https://github.com/TeoZ08/jarvis-academico.git" target="_blank" rel="noopener">Código</a>
-              <button type="button" data-open-project="jarvis">Detalhes</button>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-categories="web impacto" data-project="unapi">
-            <div class="project-topline">
-              <span class="project-index">02</span>
-              <span class="project-status">Extensão</span>
-            </div>
-            <h3>Portal UnAPI Oficinas</h3>
-            <p>
-              Portal educacional para oficinas de informática, reunindo práticas,
-              materiais e simuladores em um ambiente simples e acessível.
-            </p>
-            <div class="tag-list">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Educação</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://pet-sistemas.github.io/unapi-oficinas/" target="_blank" rel="noopener">Acessar</a>
-              <button type="button" data-open-project="unapi">Detalhes</button>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-categories="web cliente" data-project="guincho">
-            <div class="project-topline">
-              <span class="project-index">03</span>
-              <span class="project-status">Cliente real</span>
-            </div>
-            <h3>Guincho 10</h3>
-            <p>
-              Site institucional para empresa real, com foco em presença digital,
-              responsividade, SEO e captação de contatos.
-            </p>
-            <div class="tag-list">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>SEO</span><span>Vercel</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://www.guincho10.com.br/" target="_blank" rel="noopener">Site</a>
-              <a href="https://github.com/TeoZ08/guincho-10.git" target="_blank" rel="noopener">Código</a>
-              <button type="button" data-open-project="guincho">Detalhes</button>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-categories="ia web impacto" data-project="aquaia">
-            <div class="project-topline">
-              <span class="project-index">04</span>
-              <span class="project-status status-progress">Protótipo</span>
-            </div>
-            <h3>AquaIA</h3>
-            <p>
-              Projeto voltado à sustentabilidade, usando tecnologia e IA para
-              apoiar análise e conscientização sobre consumo de água.
-            </p>
-            <div class="tag-list">
-              <span>IA</span><span>Sustentabilidade</span><span>Render</span><span>UX</span><span>Web App</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://aquaia-ufms.onrender.com/" target="_blank" rel="noopener">Protótipo</a>
-              <button type="button" data-open-project="aquaia">Detalhes</button>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-categories="web cliente" data-project="useart">
-            <div class="project-topline">
-              <span class="project-index">05</span>
-              <span class="project-status status-progress">MVP</span>
-            </div>
-            <h3>useART</h3>
-            <p>
-              MVP de e-commerce para marca de camisetas, com catálogo,
-              carrinho persistente, checkout interno e finalização via WhatsApp.
-            </p>
-            <div class="tag-list">
-              <span>React</span><span>Vite</span><span>E-commerce</span><span>WhatsApp</span><span>Cliente</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/TeoZ08/useART.git" target="_blank" rel="noopener">Código</a>
-              <button type="button" data-open-project="useart">Detalhes</button>
-            </div>
-          </article>
-
-          <article class="project-card reveal" data-categories="ia web api" data-project="resumidor">
-            <div class="project-topline">
-              <span class="project-index">06</span>
-              <span class="project-status">Ferramenta IA</span>
-            </div>
-            <h3>ResumidorVideos</h3>
-            <p>
-              Ferramenta com CLI, API FastAPI e interface React para resumir
-              vídeos com Gemini e exportar Markdown.
-            </p>
-            <div class="tag-list">
-              <span>IA</span><span>Gemini</span><span>FastAPI</span><span>React</span><span>SQLite</span>
-            </div>
-            <div class="project-actions">
-              <a href="https://github.com/TeoZ08/ResumidorVideos.git" target="_blank" rel="noopener">Código</a>
-              <button type="button" data-open-project="resumidor">Detalhes</button>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="stack section-shell" id="stack">
-        <div class="section-heading reveal">
-          <p class="section-label">03 / Stack</p>
-          <h2>Tecnologias.</h2>
-        </div>
-
-        <div class="stack-grid reveal">
-          <article class="stack-group">
-            <h3>Front-end</h3>
-            <p>Interfaces e componentes web.</p>
-            <div><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Vite</span></div>
-          </article>
-          <article class="stack-group">
-            <h3>Back-end</h3>
-            <p>APIs e lógica de servidor.</p>
-            <div><span>Node.js</span><span>Express</span><span>Python</span><span>Flask</span><span>FastAPI</span></div>
-          </article>
-          <article class="stack-group">
-            <h3>Dados, APIs & IA</h3>
-            <p>Dados, integrações e IA.</p>
-            <div><span>SQL/MySQL</span><span>MongoDB</span><span>APIs REST</span><span>IA aplicada</span></div>
-          </article>
-          <article class="stack-group">
-            <h3>Fundamentos e deploy</h3>
-            <p>Base técnica, Git e deploy.</p>
-            <div><span>Java</span><span>C</span><span>Git/GitHub</span><span>Hugging Face</span><span>Render</span></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="contact section-shell" id="contato">
-        <div class="contact-panel reveal">
-          <div>
-            <p class="section-label">04 / Contato</p>
-            <h2>Contato.</h2>
-            <p>E-mail, WhatsApp, GitHub e currículo em PDF.</p>
-          </div>
-
-          <div class="contact-actions">
-            <button class="contact-card" type="button" data-copy="matteoscotti10@gmail.com">
-              <span>E-mail</span>
-              <strong>matteoscotti10@gmail.com</strong>
-              <small>Clique para copiar</small>
-            </button>
-            <a class="contact-card" href="https://wa.me/5567993379089" target="_blank" rel="noopener">
-              <span>WhatsApp</span>
-              <strong>(67) 99337-9089</strong>
-              <small>Abrir conversa</small>
-            </a>
-            <a class="contact-card" href="https://github.com/TeoZ08" target="_blank" rel="noopener">
-              <span>GitHub</span>
-              <strong>@TeoZ08</strong>
-              <small>Ver repositórios</small>
-            </a>
-            <a class="contact-card" href="assets/curriculo-matteo-2026.pdf" download>
-              <span>Currículo</span>
-              <strong>PDF atualizado</strong>
-              <small>Baixar arquivo</small>
-            </a>
+      <section class="contact section" id="contato">
+        <div class="section-marker reveal"><span>03</span><p>Contato</p></div>
+        <div class="contact-layout reveal">
+          <p class="eyebrow">Contato</p>
+          <h2>Gostou de algum projeto ou quer conversar sobre tecnologia?</h2>
+          <button type="button" class="email-link" data-copy="matteoscotti10@gmail.com">
+            <span>matteoscotti10</span><span>@gmail.com</span>
+          </button>
+          <div class="contact-links">
+            <a href="https://github.com/TeoZ08" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="%BASE_URL%curriculo-matteo-2026.pdf" download>Currículo PDF ↓</a>
           </div>
         </div>
+        <footer class="site-footer">
+          <span>Matteo Lima Scotti</span>
+          <span>Campo Grande · MS</span>
+          <span>© <b data-year>2026</b></span>
+          <img
+            src="%BASE_URL%identity/logo-teo.png"
+            alt="teo"
+            width="42"
+            height="42"
+          />
+        </footer>
       </section>
     </main>
 
-    <footer class="footer section-shell">
-      <img src="assets/logo-teo.png" alt="teo" />
-      <p>© 2026 Matteo Lima Scotti. UFMS.</p>
-    </footer>
-
-    <div class="command-overlay" data-command-overlay aria-hidden="true">
-      <div class="command-palette" role="dialog" aria-modal="true" aria-labelledby="command-title">
-        <div class="command-top">
-          <div>
-            <p class="section-label">Busca</p>
-            <h2 id="command-title">Busca</h2>
+    <div class="project-overlay" data-project-overlay aria-hidden="true" inert>
+      <article class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <header class="modal-head">
+          <div><span data-modal-index></span><p data-modal-status></p></div>
+          <button type="button" data-close-project aria-label="Fechar projeto">Fechar <span>×</span></button>
+        </header>
+        <div class="project-modal-scroll" data-project-modal-scroll tabindex="0" aria-label="Conteúdo do projeto">
+          <div class="modal-hero">
+            <div><p class="eyebrow" data-modal-kind></p><h2 id="modal-title" data-modal-title></h2><p data-modal-summary></p></div>
+            <img data-modal-image src="%BASE_URL%projects/useart-home.webp" alt="" />
           </div>
-          <button type="button" class="command-close" data-close-command aria-label="Fechar comandos">×</button>
+          <div class="modal-story">
+            <section><span>01 · Como começou</span><p data-modal-started></p></section>
+            <section><span>02 · O problema real</span><p data-modal-problem></p></section>
+            <section><span>03 · O que mudou</span><p data-modal-decision></p></section>
+            <section><span>04 · Estado atual</span><p data-modal-current></p></section>
+            <section><span>05 · Limite atual</span><p data-modal-limit></p></section>
+            <section><span>06 · Próximo passo</span><p data-modal-next></p></section>
+          </div>
+          <footer class="modal-footer"><div data-modal-tags></div><nav data-modal-links aria-label="Links do projeto"></nav></footer>
         </div>
-        <label class="command-search">
-          <span class="sr-only">Buscar comando</span>
-          <input type="text" data-command-input placeholder="Digite:" autocomplete="off" />
-        </label>
-        <div class="command-list" data-command-list></div>
-        <p class="command-hint"><kbd>/</kbd> abre · <kbd>esc</kbd> fecha</p>
-      </div>
+      </article>
     </div>
 
-    <div class="project-modal" data-project-modal aria-hidden="true">
-      <div class="project-modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
-        <button type="button" class="modal-close" data-close-project aria-label="Fechar detalhes">×</button>
-        <p class="section-label" data-modal-status>Projeto</p>
-        <h2 id="modal-project-title" data-modal-title></h2>
-        <p data-modal-description></p>
-        <div class="modal-columns">
-          <div>
-            <h3>Problema</h3>
-            <p data-modal-problem></p>
-          </div>
-          <div>
-            <h3>Solução</h3>
-            <p data-modal-solution></p>
-          </div>
-        </div>
-        <div class="tag-list" data-modal-tags></div>
-        <div class="project-actions" data-modal-links></div>
+    <div class="folder-transition" data-folder-transition aria-hidden="true">
+      <span class="folder-transition-tab"></span>
+      <div class="folder-transition-label">
+        <span data-transition-index></span>
+        <strong data-transition-title></strong>
       </div>
+      <img data-transition-image src="%BASE_URL%projects/useart-home.webp" alt="" />
     </div>
 
     <div class="toast" data-toast aria-live="polite"></div>
-
-    <script src="script.js"></script>
   </body>
 </html>
