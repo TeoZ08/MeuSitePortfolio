@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfólio de Matteo Lima Scotti: projetos de software, IA aplicada, interfaces e experimentos 3D."
+      content="Portfólio de Matteo Lima Scotti: projetos de software, IA aplicada, interfaces e produtos digitais."
     />
-    <meta name="theme-color" content="#e9dcc6" />
-    <meta property="og:title" content="Matteo — Projetos e arquivo" />
+    <meta name="theme-color" content="#111216" />
+    <meta property="og:title" content="Matteo Lima Scotti — Portfólio" />
     <meta
       property="og:description"
-      content="Projetos, ferramentas e experimentos de Matteo Lima Scotti."
+      content="Projetos de software, IA aplicada, interfaces e produtos digitais."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="%BASE_URL%og-cover.png" />
-    <title>Matteo — Projetos e arquivo</title>
+    <title>Matteo Lima Scotti — Portfólio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="%BASE_URL%identity/logo-teo.png" type="image/png" />
@@ -29,182 +29,132 @@
 
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <div class="paper-noise" aria-hidden="true"></div>
 
-    <nav class="site-nav" aria-label="Navegação principal">
-      <a class="nav-brand" href="#inicio" aria-label="Matteo, voltar ao início">
-        <img
-          src="%BASE_URL%identity/logo-teo.png"
-          alt=""
-          width="34"
-          height="34"
-        />
-        <span>Matteo</span>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Matteo, voltar ao início">
+        <img src="%BASE_URL%identity/logo-teo.png" alt="" width="36" height="36" />
+        <span>Matteo Lima Scotti</span>
       </a>
 
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-label="Abrir menu"
-        aria-expanded="false"
-        data-nav-toggle
-      >
-        <span></span><span></span>
-      </button>
-
-      <div class="nav-links" data-nav-menu>
+      <nav aria-label="Navegação principal">
         <a href="#projetos">Projetos</a>
-        <a href="#faculdade">Faculdade</a>
+        <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <main id="conteudo">
-      <header class="hero" id="inicio">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Matteo Lima Scotti · Campo Grande, MS</p>
-          <h1>Oi, sou <em>Matteo.</em></h1>
-          <p class="hero-intro">
-            Estudo Ciência da Computação e gosto de construir coisas que me ajudam a entender melhor um problema. Algumas viraram produtos, outras são ferramentas, protótipos ou experimentos que ainda estão mudando.
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Disponível para estágio em desenvolvimento de software</span>
+        </div>
+
+        <h1 id="hero-title">
+          Software para problemas
+          <span>que valem ser entendidos.</span>
+        </h1>
+
+        <div class="hero-bottom">
+          <p>
+            Sou estudante de Ciência da Computação na UFMS. Desenvolvo produtos,
+            ferramentas e experiências digitais — do primeiro protótipo ao deploy.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projetos">Ver projetos <span>↓</span></a>
-            <a class="button button-quiet" href="#contato">Contato <span>↘</span></a>
-          </div>
-          <div class="hero-footnote">
-            <span>Ciência da Computação · UFMS</span>
-            <span>6º semestre começa em agosto</span>
-          </div>
+
+          <a class="text-link" href="#projetos">Ver projetos <span aria-hidden="true">↓</span></a>
         </div>
 
-        <section class="archive-explorer reveal" aria-labelledby="archive-title" data-archive-shell>
-          <div class="archive-topline">
-            <div>
-              <p>ARQUIVO DE PROJETOS</p>
-              <h2 id="archive-title">Puxe uma pasta.</h2>
-            </div>
-            <span class="archive-state-label" data-archive-state-label>PRONTO PARA PUXAR</span>
+        <dl class="hero-facts" aria-label="Informações rápidas">
+          <div>
+            <dt>Base</dt>
+            <dd>Campo Grande, MS</dd>
           </div>
-
-          <div class="archive-stage">
-            <canvas data-archive-scene aria-hidden="true"></canvas>
-            <div class="archive-fallback" data-archive-fallback aria-hidden="true"></div>
-            <div class="archive-instruction" aria-hidden="true">
-              <span>Segure uma pasta</span><span>Arraste para cima</span>
-            </div>
-            <div class="archive-drag-status" data-archive-drag-status aria-hidden="true">
-              <span data-archive-drag-copy>PUXE PARA ABRIR</span>
-              <i><b data-archive-progress></b></i>
-            </div>
+          <div>
+            <dt>Formação</dt>
+            <dd>Ciência da Computação · UFMS</dd>
           </div>
+          <div>
+            <dt>Foco</dt>
+            <dd>Backend, IA aplicada e produto</dd>
+          </div>
+        </dl>
+      </section>
 
-          <div class="archive-projects" data-archive-list aria-label="Pastas de projeto"></div>
-        </section>
+      <section class="projects" id="projetos" aria-labelledby="projects-title">
+        <header class="section-header">
+          <p class="section-label">01 · Projetos selecionados</p>
+          <div>
+            <h2 id="projects-title">Trabalho recente</h2>
+            <p>Quatro projetos. Cada um existe por um motivo diferente.</p>
+          </div>
+        </header>
 
-        <a class="scroll-cue" href="#projetos"><span>role para continuar</span><i></i></a>
-      </header>
-
-      <section class="projects section" id="projetos">
-        <div class="section-marker reveal"><span>01</span><p>Projetos</p></div>
-        <div class="section-heading reveal">
-          <h2>Projetos</h2>
-          <p>Escolhi estes porque cada um me obrigou a aprender algo diferente.</p>
-        </div>
         <div class="project-list" data-project-list></div>
       </section>
 
-      <section class="college section" id="faculdade">
-        <div class="section-marker reveal"><span>02</span><p>Faculdade</p></div>
-        <div class="college-layout">
-          <div class="college-copy reveal">
-            <p class="eyebrow">Ciência da Computação · UFMS</p>
-            <h2>Faculdade</h2>
-            <p>Terminei o quinto semestre e começo o sexto em agosto.</p>
+      <section class="about" id="sobre" aria-labelledby="about-title">
+        <header class="section-header">
+          <p class="section-label">02 · Sobre</p>
+          <div>
+            <h2 id="about-title">Aprender construindo.</h2>
+          </div>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-intro">
             <p>
-              A graduação me dá a base; os projetos ajudam a descobrir onde essa base aguenta o uso e onde ainda preciso estudar mais.
+              A faculdade organiza os fundamentos. Os projetos mostram onde eles
+              funcionam, onde quebram e o que ainda preciso estudar.
+            </p>
+            <p>
+              Não quero ficar restrito a uma tecnologia. Meu interesse está em
+              entender sistemas completos: interface, regras, dados, infraestrutura
+              e as decisões que conectam tudo isso.
             </p>
           </div>
-          <div class="semester-file reveal">
-            <div class="semester-current">
-              <span>2026.1</span>
-              <strong>5º semestre</strong>
-              <small>concluído</small>
+
+          <dl class="about-list">
+            <div>
+              <dt>Base técnica</dt>
+              <dd>Algoritmos, sistemas, arquitetura e matemática.</dd>
             </div>
-            <div class="semester-next">
-              <span>AGO / 2026</span>
-              <strong>6º semestre</strong>
-              <small>próximo</small>
+            <div>
+              <dt>Prática</dt>
+              <dd>Web, APIs, deploy, dados, automação e observabilidade.</dd>
             </div>
-            <p class="semester-note">fundamentos → projetos → perguntas novas → voltar aos fundamentos</p>
-          </div>
-          <div class="learning-ledger reveal">
-            <article><span>BASE</span><h3>Algoritmos e sistemas</h3><p>Estruturas, arquitetura, matemática e teoria.</p></article>
-            <article><span>PRÁTICA</span><h3>Software que sai do editor</h3><p>Web, APIs, deploy, dados e observabilidade.</p></article>
-            <article><span>EXTENSÃO</span><h3>Tecnologia com contexto</h3><p>Ensinar pessoas idosas tornou acessibilidade uma questão concreta.</p></article>
-          </div>
+            <div>
+              <dt>Contexto</dt>
+              <dd>Produtos reais, extensão universitária e problemas acadêmicos.</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      <section class="contact section" id="contato">
-        <div class="section-marker reveal"><span>03</span><p>Contato</p></div>
-        <div class="contact-layout reveal">
-          <p class="eyebrow">Contato</p>
-          <h2>Gostou de algum projeto ou quer conversar sobre tecnologia?</h2>
-          <button type="button" class="email-link" data-copy="matteoscotti10@gmail.com">
-            <span>matteoscotti10</span><span>@gmail.com</span>
-          </button>
-          <div class="contact-links">
-            <a href="https://github.com/TeoZ08" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="%BASE_URL%curriculo-matteo-2026.pdf" download>Currículo PDF ↓</a>
-          </div>
+      <section class="contact" id="contato" aria-labelledby="contact-title">
+        <p class="section-label">03 · Contato</p>
+        <h2 id="contact-title">Vamos conversar sobre software.</h2>
+        <p class="contact-copy">
+          Estou aberto a oportunidades de estágio, colaboração e conversas sobre os projetos.
+        </p>
+
+        <button class="email-button" type="button" data-copy-email="matteoscotti10@gmail.com">
+          <span>matteoscotti10@gmail.com</span>
+          <small data-copy-label>copiar e-mail</small>
+        </button>
+
+        <div class="contact-links">
+          <a href="https://github.com/TeoZ08" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="%BASE_URL%curriculo-matteo-2026.pdf" download>Currículo PDF ↓</a>
         </div>
-        <footer class="site-footer">
-          <span>Matteo Lima Scotti</span>
-          <span>Campo Grande · MS</span>
-          <span>© <b data-year>2026</b></span>
-          <img
-            src="%BASE_URL%identity/logo-teo.png"
-            alt="teo"
-            width="42"
-            height="42"
-          />
-        </footer>
       </section>
     </main>
 
-    <div class="project-overlay" data-project-overlay aria-hidden="true" inert>
-      <article class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <header class="modal-head">
-          <div><span data-modal-index></span><p data-modal-status></p></div>
-          <button type="button" data-close-project aria-label="Fechar projeto">Fechar <span>×</span></button>
-        </header>
-        <div class="project-modal-scroll" data-project-modal-scroll tabindex="0" aria-label="Conteúdo do projeto">
-          <div class="modal-hero">
-            <div><p class="eyebrow" data-modal-kind></p><h2 id="modal-title" data-modal-title></h2><p data-modal-summary></p></div>
-            <img data-modal-image src="%BASE_URL%projects/useart-home.webp" alt="" />
-          </div>
-          <div class="modal-story">
-            <section><span>01 · Como começou</span><p data-modal-started></p></section>
-            <section><span>02 · O problema real</span><p data-modal-problem></p></section>
-            <section><span>03 · O que mudou</span><p data-modal-decision></p></section>
-            <section><span>04 · Estado atual</span><p data-modal-current></p></section>
-            <section><span>05 · Limite atual</span><p data-modal-limit></p></section>
-            <section><span>06 · Próximo passo</span><p data-modal-next></p></section>
-          </div>
-          <footer class="modal-footer"><div data-modal-tags></div><nav data-modal-links aria-label="Links do projeto"></nav></footer>
-        </div>
-      </article>
-    </div>
+    <footer class="site-footer">
+      <span>Matteo Lima Scotti</span>
+      <span>Campo Grande · MS</span>
+      <span>© <b data-year></b></span>
+    </footer>
 
-    <div class="folder-transition" data-folder-transition aria-hidden="true">
-      <span class="folder-transition-tab"></span>
-      <div class="folder-transition-label">
-        <span data-transition-index></span>
-        <strong data-transition-title></strong>
-      </div>
-      <img data-transition-image src="%BASE_URL%projects/useart-home.webp" alt="" />
-    </div>
-
-    <div class="toast" data-toast aria-live="polite"></div>
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
   </body>
 </html>
