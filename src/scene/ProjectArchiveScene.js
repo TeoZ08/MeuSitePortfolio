@@ -37,6 +37,10 @@ export class ProjectArchiveScene {
     this.dragRaw = 0;
     this.dragTarget = 0;
     this.dragX = 0;
+    this.orbitYaw = 0;
+    this.orbitPitch = 0;
+    this.orbitStartYaw = 0;
+    this.orbitStartPitch = 0;
     this.pull = 0;
     this.pullVelocity = 0;
     this.hero = 0;
@@ -259,8 +263,33 @@ export class ProjectArchiveScene {
     if (this.state !== "idle") return;
     this.updatePointerTarget(event);
     const id = this.getHit(event);
-    this.canvas.style.cursor = id ? "grab" : "default";
+    this.canvas.style.cursor = "grab";
     if (id && id !== this.hoverId) this.select(id, { emit: true });
+  }
+
+  handleOrbit(event) {
+    if (this.state !== "orbiting" || event.pointerId !== this.dragPointerId) return;
+    event.preventDefault();
+    const rect = this.canvas.getBoundingClientRect();
+    const deltaX = event.clientX - this.dragStart.x;
+    const deltaY = event.clientY - this.dragStart.y;
+    this.orbitYaw = clamp(this.orbitStartYaw + (deltaX / rect.width) * 1.8, -0.62, 0.62);
+    this.orbitPitch = clamp(this.orbitStartPitch + (deltaY / rect.height) * 0.72, -0.14, 0.16);
+    this.start();
+  }
+
+  finishOrbit(event, releaseCapture = true) {
+    if (this.state !== "orbiting" || event.pointerId !== this.dragPointerId) return;
+    if (releaseCapture) {
+      try {
+        this.canvas.releasePointerCapture(event.pointerId);
+      } catch {}
+    }
+    this.dragPointerId = null;
+    this.state = "idle";
+    this.canvas.style.cursor = "grab";
+    this.emitState("idle");
+    this.start();
   }
 
   handleDrag(event) {
@@ -307,28 +336,43 @@ export class ProjectArchiveScene {
     };
     this.handlePointerMove = (event) => {
       if (this.state === "dragging") this.handleDrag(event);
+      else if (this.state === "orbiting") this.handleOrbit(event);
       else this.handleHover(event);
     };
     this.handlePointerDown = (event) => {
       if (this.state !== "idle" || event.button !== 0) return;
       const id = this.getHit(event);
-      if (!id) return;
       event.preventDefault();
-      this.select(id, { emit: true });
-      this.state = "dragging";
       this.dragPointerId = event.pointerId;
       this.dragStart.set(event.clientX, event.clientY);
+      this.canvas.setPointerCapture?.(event.pointerId);
+      this.canvas.style.cursor = "grabbing";
+
+      if (!id) {
+        this.state = "orbiting";
+        this.orbitStartYaw = this.orbitYaw;
+        this.orbitStartPitch = this.orbitPitch;
+        this.pointerTarget.set(0, 0);
+        this.emitState("orbiting");
+        this.start();
+        return;
+      }
+
+      this.select(id, { emit: true });
+      this.state = "dragging";
       this.dragRaw = 0;
       this.dragTarget = 0;
       this.dragX = 0;
       this.didDrag = false;
-      this.canvas.setPointerCapture?.(event.pointerId);
-      this.canvas.style.cursor = "grabbing";
       this.emitState("dragging");
       this.emit("archive:dragstart", { id });
       this.start();
     };
     this.handlePointerUp = (event) => {
+      if (this.state === "orbiting") {
+        this.finishOrbit(event);
+        return;
+      }
       if (this.state !== "dragging" || event.pointerId !== this.dragPointerId) return;
       try {
         this.canvas.releasePointerCapture(event.pointerId);
@@ -338,6 +382,10 @@ export class ProjectArchiveScene {
       else this.settleFolder();
     };
     this.handlePointerCancel = (event) => {
+      if (this.state === "orbiting") {
+        this.finishOrbit(event);
+        return;
+      }
       if (this.state !== "dragging" || event.pointerId !== this.dragPointerId) return;
       try {
         this.canvas.releasePointerCapture(event.pointerId);
@@ -346,6 +394,10 @@ export class ProjectArchiveScene {
       this.settleFolder();
     };
     this.handleLostPointerCapture = (event) => {
+      if (this.state === "orbiting") {
+        this.finishOrbit(event, false);
+        return;
+      }
       if (this.state !== "dragging" || event.pointerId !== this.dragPointerId) return;
       this.dragPointerId = null;
       this.settleFolder();
@@ -353,7 +405,7 @@ export class ProjectArchiveScene {
     this.handlePointerLeave = () => {
       if (this.state === "idle") {
         this.pointerTarget.set(0, 0);
-        this.canvas.style.cursor = "default";
+        this.canvas.style.cursor = "grab";
       }
     };
 
@@ -505,8 +557,18 @@ export class ProjectArchiveScene {
     const influence = clamp(Math.max(Math.abs(this.pull), this.hero), 0, 1);
     this.calculateFolderTargets();
     const pointerStrength = ["idle", "settling"].includes(this.state) ? 1 : 0.2;
-    this.root.rotation.y = damp(this.root.rotation.y, -0.1 + this.pointerTarget.x * 0.075 * pointerStrength, 5, delta);
-    this.root.rotation.x = damp(this.root.rotation.x, -0.025 + this.pointerTarget.y * 0.03 * pointerStrength - influence * 0.02, 5, delta);
+    this.root.rotation.y = damp(
+      this.root.rotation.y,
+      -0.1 + this.orbitYaw + this.pointerTarget.x * 0.045 * pointerStrength,
+      this.state === "orbiting" ? 12 : 5,
+      delta
+    );
+    this.root.rotation.x = damp(
+      this.root.rotation.x,
+      -0.025 + this.orbitPitch + this.pointerTarget.y * 0.022 * pointerStrength - influence * 0.02,
+      this.state === "orbiting" ? 12 : 5,
+      delta
+    );
 
     this.folders.forEach((folder, index) => {
       folder.update(delta, {
@@ -523,7 +585,7 @@ export class ProjectArchiveScene {
       });
     });
 
-    this.archiveBox.update(delta, { influence, dragX: this.dragX, open: this.openAmount });
+    this.archiveBox.update(delta, { influence, dragX: this.dragX });
     this.emberLight.intensity = damp(this.emberLight.intensity, 22 + influence * 13 - this.openAmount * 8, 5, delta);
     this.keyLight.position.x = damp(this.keyLight.position.x, -4.5 + this.pointerTarget.x * 0.8, 4, delta);
 
@@ -628,6 +690,7 @@ export class ProjectArchiveScene {
       hero: this.hero,
       open: this.openAmount,
       pointerCaptured: this.dragPointerId !== null,
+      orbit: { yaw: this.orbitYaw, pitch: this.orbitPitch },
       activeFolderVisible: this.activeFolderVisible,
       collision,
       render: { ...this.renderer.info.render }

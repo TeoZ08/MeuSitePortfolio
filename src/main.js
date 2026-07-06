@@ -471,6 +471,7 @@ function initArchiveControls() {
     const project = projectById[id];
     const labels = {
       idle: "PRONTO PARA PUXAR",
+      orbiting: "GIRANDO O ARQUIVO",
       dragging: project ? `PUXANDO ${project.shortTitle}` : "PUXANDO PASTA",
       settling: "RETORNANDO À CAIXA",
       extracting: "ABRINDO ARQUIVO",
