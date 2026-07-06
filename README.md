@@ -8,7 +8,7 @@ A proposta aplica **design por subtração**: remover interações, efeitos e ca
 
 ## O que mudou
 
-- remoção da experiência 3D e da dependência Three.js;
+- remoção da experiência 3D da interface principal;
 - remoção de modal, transições de pasta, ruído e elementos cenográficos;
 - navegação reduzida a Projetos, Sobre e Contato;
 - estudos de caso exibidos no próprio fluxo da página;
