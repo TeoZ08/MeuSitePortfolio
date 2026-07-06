@@ -57,6 +57,8 @@ export class ProjectArchiveScene {
     };
 
     this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0x170c0a);
+    this.scene.fog = new THREE.Fog(0x170c0a, 11, 26);
     this.camera = new THREE.PerspectiveCamera(34, 1, 0.1, 80);
     this.camera.position.set(0, 3.8, 7.2);
     this.cameraTarget = new THREE.Vector3(0, -0.12, 0);
@@ -127,18 +129,35 @@ export class ProjectArchiveScene {
   }
 
   addDesk() {
+    const wallMaterial = new THREE.MeshStandardMaterial({
+      color: 0x1b0e0c,
+      roughness: 1,
+      metalness: 0
+    });
+    this.wall = new THREE.Mesh(new THREE.PlaneGeometry(36, 18), wallMaterial);
+    this.wall.position.set(0, 6.8, -5.2);
+    this.wall.receiveShadow = true;
+    this.scene.add(this.wall);
+
+    const wallGrid = new THREE.GridHelper(36, 72, 0x6a3028, 0x42201b);
+    wallGrid.rotation.x = Math.PI / 2;
+    wallGrid.position.set(0, 6.8, -5.14);
+    wallGrid.material.transparent = true;
+    wallGrid.material.opacity = 0.1;
+    this.scene.add(wallGrid);
+
     const material = new THREE.MeshStandardMaterial({
       color: 0x241714,
       roughness: 0.94,
       metalness: 0.01
     });
-    this.desk = new THREE.Mesh(new THREE.PlaneGeometry(18, 14), material);
+    this.desk = new THREE.Mesh(new THREE.PlaneGeometry(36, 26), material);
     this.desk.rotation.x = -Math.PI / 2;
     this.desk.position.y = -0.91;
     this.desk.receiveShadow = true;
     this.scene.add(this.desk);
 
-    const grain = new THREE.GridHelper(14, 28, 0x4a3028, 0x332019);
+    const grain = new THREE.GridHelper(36, 72, 0x4a3028, 0x332019);
     grain.position.y = -0.902;
     grain.material.transparent = true;
     grain.material.opacity = 0.16;
@@ -508,9 +527,14 @@ export class ProjectArchiveScene {
     this.emberLight.intensity = damp(this.emberLight.intensity, 22 + influence * 13 - this.openAmount * 8, 5, delta);
     this.keyLight.position.x = damp(this.keyLight.position.x, -4.5 + this.pointerTarget.x * 0.8, 4, delta);
 
-    const baseZ = this.shell.clientWidth < 820 ? 8.15 : 7.2;
+    const compact = this.shell.clientWidth < 820;
+    const baseX = this.wideHero ? -2.35 : 0;
+    const baseZ = this.wideHero ? 10.2 : compact ? 8.15 : 7.2;
+    const baseY = this.wideHero ? 5.05 : compact ? 4.2 : 3.8;
+    this.camera.position.x = damp(this.camera.position.x, baseX, 5, delta);
     this.camera.position.z = damp(this.camera.position.z, baseZ - this.hero * 0.68, 5, delta);
-    this.camera.position.y = damp(this.camera.position.y, (this.shell.clientWidth < 820 ? 4.2 : 3.8) - this.hero * 0.22, 5, delta);
+    this.camera.position.y = damp(this.camera.position.y, baseY - this.hero * 0.22, 5, delta);
+    this.cameraTarget.x = damp(this.cameraTarget.x, baseX, 5, delta);
     this.cameraTarget.y = damp(this.cameraTarget.y, -0.12 + this.hero * 0.34, 5, delta);
     this.cameraTarget.z = damp(this.cameraTarget.z, this.hero * 0.4, 5, delta);
     this.camera.lookAt(this.cameraTarget);
@@ -538,10 +562,15 @@ export class ProjectArchiveScene {
   resize() {
     const width = Math.max(1, this.canvas.clientWidth || this.shell.clientWidth);
     const height = Math.max(1, this.canvas.clientHeight || 520);
+    const compact = this.shell.clientWidth < 820;
+    this.wideHero = window.matchMedia("(min-width: 1101px) and (min-aspect-ratio: 3 / 2)").matches && width > 1000;
+    const baseX = this.wideHero ? -2.35 : 0;
+    const baseY = this.wideHero ? 5.05 : compact ? 4.2 : 3.8;
+    const baseZ = this.wideHero ? 10.2 : compact ? 8.15 : 7.2;
     this.renderer.setSize(width, height, false);
     this.camera.aspect = width / height;
-    this.camera.position.set(0, width < 820 ? 4.2 : 3.8, width < 820 ? 8.15 : 7.2);
-    this.cameraTarget.set(0, -0.12, 0);
+    this.camera.position.set(baseX, baseY, baseZ);
+    this.cameraTarget.set(baseX, -0.12, 0);
     this.camera.lookAt(this.cameraTarget);
     this.camera.updateProjectionMatrix();
     this.renderOnce();
