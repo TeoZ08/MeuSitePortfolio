@@ -69,6 +69,7 @@ A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras
 
 - Hover: deslocamento pequeno, inversão papel/carvão ou perspectiva limitada.
 - Focus: contorno vermelho de 2 px com offset.
+- Fundo do canvas arrastado: gira a caixa e as pastas juntas, dentro de limites que preservam leitura e enquadramento.
 - Pasta ativa: permanece em seu slot e sai pelo eixo físico de extração; o botão HTML inverte para papel.
 - Arraste: `pointer capture`, resistência progressiva, volumes `Box3`, reação dos vizinhos, indicador e limite de 70%.
 - Abaixo do limite: retorno com spring, sem abrir o projeto.
