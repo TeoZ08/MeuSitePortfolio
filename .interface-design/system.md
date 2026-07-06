@@ -19,7 +19,7 @@ Pastas, slots, lombadas, caixa, fichas, recortes, rascunhos, carimbos, código, 
 4. Capturas reais; nenhum mockup inventado.
 5. Um único canvas cobre a hero desktop e situa o arquivo no ambiente; nunca um canvas por card.
 6. Todo texto e toda ação continuam em HTML.
-7. Mobile usa fallback HTML, swipe e snap, sem exigir WebGL ou hover.
+7. Mobile usa a mesma cena WebGL quando disponível, com giro horizontal, seleção por toque e extração por controle HTML; o fallback permanece obrigatório.
 8. Movimento comunica peso e materialidade; não esconde navegação.
 
 ## Tokens
@@ -70,6 +70,8 @@ A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras
 - Hover: deslocamento pequeno, inversão papel/carvão ou perspectiva limitada.
 - Focus: contorno vermelho de 2 px com offset.
 - Fundo do canvas arrastado: gira a caixa e as pastas juntas, dentro de limites que preservam leitura e enquadramento.
+- Touch mobile: gesto horizontal no fundo gira; gesto vertical continua rolando a página; tocar uma pasta seleciona sem abrir.
+- Extração mobile: um controle HTML dedicado acompanha o dedo, aplica resistência e usa o mesmo limite físico de 70%.
 - Pasta ativa: permanece em seu slot e sai pelo eixo físico de extração; o botão HTML inverte para papel.
 - Arraste: `pointer capture`, resistência progressiva, volumes `Box3`, reação dos vizinhos, indicador e limite de 70%.
 - Abaixo do limite: retorno com spring, sem abrir o projeto.
@@ -84,7 +86,7 @@ A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras
 - Acima de 1100 px em orientação suficientemente horizontal: hero inteira é o ambiente WebGL; texto HTML ocupa o espaço negativo à esquerda e o arquivo 3D permanece à direita, sem frame.
 - 921–1100 px: hero ainda dividida, composição comprimida.
 - 681–920 px: hero e cases empilhados; navegação recolhida.
-- Até 680 px: sem WebGL; pastas usam swipe/snap e abrem o mesmo case HTML; nenhuma dependência de hover.
+- Até 680 px: WebGL full-bleed em retrato quando disponível; câmera própria, pixel ratio reduzido e fallback HTML para indisponibilidade ou falha de contexto.
 
 ## Conteúdo
 

@@ -80,7 +80,7 @@ function renderProjects() {
 function initNavigation() {
   const nav = $(".site-nav");
   const hero = $(".hero");
-  const immersiveHeroQuery = window.matchMedia("(min-width: 1101px) and (min-aspect-ratio: 3 / 2)");
+  const immersiveHeroQuery = window.matchMedia("(max-width: 680px), (min-width: 1101px) and (min-aspect-ratio: 3 / 2)");
   const toggle = $("[data-nav-toggle]");
   const menu = $("[data-nav-menu]");
   if (!nav || !toggle || !menu) return;
@@ -455,10 +455,24 @@ function initArchiveControls() {
   const progressBar = $("[data-archive-progress]");
   const progressCopy = $("[data-archive-drag-copy]");
   const stateLabel = $("[data-archive-state-label]");
+  const mobilePullControl = $("[data-mobile-pull-control]");
+  const mobilePull = $("[data-mobile-pull]");
+  const mobilePullName = $("[data-mobile-pull-name]");
   if (!buttons.length || !shell) return;
 
+  let activeId = projects[0]?.id;
+  let pullPointerId = null;
+  let pullStartY = 0;
+  let pullMoved = false;
+
   const updateButtons = (id) => {
+    activeId = id;
     buttons.forEach((button) => button.classList.toggle("is-active", button.dataset.archiveProject === id));
+    const project = projectById[id];
+    if (project && mobilePull && mobilePullName) {
+      mobilePullName.textContent = project.shortTitle;
+      mobilePull.setAttribute("aria-label", `Segure e puxe para abrir a pasta ${project.title}`);
+    }
   };
 
   const select = (id) => {
@@ -483,14 +497,70 @@ function initArchiveControls() {
     if (state === "idle") {
       progressBar.style.transform = "scaleX(0)";
       progressCopy.textContent = "PUXE PARA ABRIR";
+      mobilePull?.style.setProperty("--pull", "0");
     }
   };
+
+  const finishMobilePull = (event, cancelled = false) => {
+    if (pullPointerId === null || event.pointerId !== pullPointerId) return;
+    try {
+      mobilePull?.releasePointerCapture(event.pointerId);
+    } catch {}
+    pullPointerId = null;
+    mobilePullControl?.classList.remove("is-pulling");
+    if (cancelled) window.__projectArchive?.cancelPull?.();
+    else window.__projectArchive?.endPull?.();
+  };
+
+  mobilePull?.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0 || pullPointerId !== null) return;
+    const scene = window.__projectArchive;
+    const canPull = scene && !motionQuery.matches && shell.dataset.archiveState === "ready";
+    if (!canPull || !scene.beginPull(activeId)) return;
+    event.preventDefault();
+    pullPointerId = event.pointerId;
+    pullStartY = event.clientY;
+    pullMoved = false;
+    mobilePull.setPointerCapture?.(event.pointerId);
+    mobilePullControl?.classList.add("is-pulling");
+  });
+
+  mobilePull?.addEventListener("pointermove", (event) => {
+    if (event.pointerId !== pullPointerId) return;
+    event.preventDefault();
+    const distance = Math.max(150, window.innerHeight * 0.24);
+    const raw = Math.max(0, Math.min(1, (pullStartY - event.clientY) / distance));
+    if (Math.abs(event.clientY - pullStartY) > 5) pullMoved = true;
+    window.__projectArchive?.updatePull?.(raw);
+  });
+
+  mobilePull?.addEventListener("pointerup", (event) => finishMobilePull(event));
+  mobilePull?.addEventListener("pointercancel", (event) => finishMobilePull(event, true));
+  mobilePull?.addEventListener("lostpointercapture", (event) => {
+    if (event.pointerId === pullPointerId) finishMobilePull(event, true);
+  });
+  mobilePull?.addEventListener("click", (event) => {
+    if (pullMoved) {
+      event.preventDefault();
+      pullMoved = false;
+      return;
+    }
+    if (event.detail === 0) {
+      event.preventDefault();
+      window.dispatchEvent(new CustomEvent("archive:directopen", { detail: { id: activeId } }));
+    }
+  });
 
   buttons.forEach((button) => {
     button.addEventListener("pointerenter", () => select(button.dataset.archiveProject));
     button.addEventListener("focus", () => select(button.dataset.archiveProject));
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
       const id = button.dataset.archiveProject;
+      const mobileSelection = window.innerWidth <= 680 && !motionQuery.matches && shell.dataset.archiveState === "ready";
+      if (mobileSelection && event.detail > 0) {
+        select(id);
+        return;
+      }
       const canAnimate = window.__projectArchive && !motionQuery.matches && shell.dataset.archiveState === "ready";
       if (!canAnimate || !window.__projectArchive.extract(id)) {
         window.dispatchEvent(new CustomEvent("archive:directopen", { detail: { id } }));
@@ -504,6 +574,7 @@ function initArchiveControls() {
     const value = Math.max(0, Math.min(1, event.detail.progress));
     progressBar.style.transform = `scaleX(${value})`;
     progressCopy.textContent = value >= event.detail.threshold ? "SOLTE PARA ABRIR" : "PUXE PARA ABRIR";
+    mobilePull?.style.setProperty("--pull", String(value));
   });
   window.addEventListener("archive:state", (event) => setState(event.detail.state, event.detail.id));
   setState("idle", projects[0]?.id);
@@ -514,12 +585,6 @@ function initArchiveScene() {
   const canvas = $("[data-archive-scene]");
   const fallback = $("[data-archive-fallback]");
   if (!shell || !canvas) return;
-  if (window.innerWidth < 720) {
-    shell.dataset.archiveState = "html";
-    canvas.setAttribute("hidden", "");
-    fallback?.removeAttribute("hidden");
-    return;
-  }
 
   let loaded = false;
   const load = async () => {
