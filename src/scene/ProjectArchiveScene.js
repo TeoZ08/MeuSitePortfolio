@@ -41,6 +41,7 @@ export class ProjectArchiveScene {
     this.orbitPitch = 0;
     this.orbitStartYaw = 0;
     this.orbitStartPitch = 0;
+    this.orbitPointerType = "mouse";
     this.pull = 0;
     this.pullVelocity = 0;
     this.hero = 0;
@@ -78,7 +79,7 @@ export class ProjectArchiveScene {
     this.renderer.toneMappingExposure = 1;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 960 ? 1.25 : 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth <= 680 ? 1.1 : window.innerWidth < 960 ? 1.25 : 1.5));
 
     const pmrem = new THREE.PMREMGenerator(this.renderer);
     this.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
@@ -115,7 +116,8 @@ export class ProjectArchiveScene {
     this.keyLight = new THREE.DirectionalLight(0xffecd0, 4.5);
     this.keyLight.position.set(-4.5, 7.2, 5.4);
     this.keyLight.castShadow = true;
-    this.keyLight.shadow.mapSize.set(1024, 1024);
+    const shadowSize = window.innerWidth <= 680 ? 512 : 1024;
+    this.keyLight.shadow.mapSize.set(shadowSize, shadowSize);
     this.keyLight.shadow.camera.left = -6;
     this.keyLight.shadow.camera.right = 6;
     this.keyLight.shadow.camera.top = 6;
@@ -200,6 +202,45 @@ export class ProjectArchiveScene {
     return true;
   }
 
+  beginPull(id) {
+    if (this.reducedMotion || !this.folderById.has(id) || this.state !== "idle") return false;
+    this.select(id, { emit: true });
+    this.state = "dragging";
+    this.dragRaw = 0;
+    this.dragTarget = 0;
+    this.dragX = 0;
+    this.didDrag = false;
+    this.emitState("dragging");
+    this.emit("archive:dragstart", { id });
+    this.start();
+    return true;
+  }
+
+  updatePull(raw) {
+    if (this.state !== "dragging") return false;
+    const progress = clamp(raw, 0, 1);
+    this.dragRaw = progress;
+    this.dragTarget = 1 - Math.pow(1 - progress, 0.78);
+    this.didDrag = progress > 0.03;
+    this.emit("archive:progress", { id: this.activeId, progress, threshold: this.threshold });
+    if (progress >= this.threshold) this.beginExtraction("drag");
+    this.start();
+    return true;
+  }
+
+  endPull() {
+    if (this.state !== "dragging") return false;
+    if (this.dragRaw >= this.threshold) this.beginExtraction("drag");
+    else this.settleFolder();
+    return true;
+  }
+
+  cancelPull() {
+    if (this.state !== "dragging") return false;
+    this.settleFolder();
+    return true;
+  }
+
   beginExtraction(source = "drag") {
     if (["extracting", "extracted", "open", "returning"].includes(this.state)) return;
     this.state = "extracting";
@@ -273,8 +314,11 @@ export class ProjectArchiveScene {
     const rect = this.canvas.getBoundingClientRect();
     const deltaX = event.clientX - this.dragStart.x;
     const deltaY = event.clientY - this.dragStart.y;
-    this.orbitYaw = clamp(this.orbitStartYaw + (deltaX / rect.width) * 1.8, -0.62, 0.62);
-    this.orbitPitch = clamp(this.orbitStartPitch + (deltaY / rect.height) * 0.72, -0.14, 0.16);
+    const yawLimit = this.mobileHero ? 0.32 : 0.62;
+    this.orbitYaw = clamp(this.orbitStartYaw + (deltaX / rect.width) * 1.8, -yawLimit, yawLimit);
+    if (this.orbitPointerType !== "touch") {
+      this.orbitPitch = clamp(this.orbitStartPitch + (deltaY / rect.height) * 0.72, -0.14, 0.16);
+    }
     this.start();
   }
 
@@ -342,7 +386,15 @@ export class ProjectArchiveScene {
     this.handlePointerDown = (event) => {
       if (this.state !== "idle" || event.button !== 0) return;
       const id = this.getHit(event);
-      event.preventDefault();
+      const touch = event.pointerType === "touch";
+
+      if (touch && id) {
+        this.select(id, { emit: true });
+        this.start();
+        return;
+      }
+
+      if (!touch) event.preventDefault();
       this.dragPointerId = event.pointerId;
       this.dragStart.set(event.clientX, event.clientY);
       this.canvas.setPointerCapture?.(event.pointerId);
@@ -352,6 +404,7 @@ export class ProjectArchiveScene {
         this.state = "orbiting";
         this.orbitStartYaw = this.orbitYaw;
         this.orbitStartPitch = this.orbitPitch;
+        this.orbitPointerType = event.pointerType || "mouse";
         this.pointerTarget.set(0, 0);
         this.emitState("orbiting");
         this.start();
@@ -591,13 +644,14 @@ export class ProjectArchiveScene {
 
     const compact = this.shell.clientWidth < 820;
     const baseX = this.wideHero ? -2.35 : 0;
-    const baseZ = this.wideHero ? 10.2 : compact ? 8.15 : 7.2;
-    const baseY = this.wideHero ? 5.05 : compact ? 4.2 : 3.8;
+    const baseZ = this.wideHero ? 10.2 : this.mobileHero ? 25.5 : compact ? 8.15 : 7.2;
+    const baseY = this.wideHero ? 5.05 : this.mobileHero ? 11.4 : compact ? 4.2 : 3.8;
+    const baseTargetY = this.mobileHero ? -2.35 : -0.12;
     this.camera.position.x = damp(this.camera.position.x, baseX, 5, delta);
     this.camera.position.z = damp(this.camera.position.z, baseZ - this.hero * 0.68, 5, delta);
     this.camera.position.y = damp(this.camera.position.y, baseY - this.hero * 0.22, 5, delta);
     this.cameraTarget.x = damp(this.cameraTarget.x, baseX, 5, delta);
-    this.cameraTarget.y = damp(this.cameraTarget.y, -0.12 + this.hero * 0.34, 5, delta);
+    this.cameraTarget.y = damp(this.cameraTarget.y, baseTargetY + this.hero * 0.34, 5, delta);
     this.cameraTarget.z = damp(this.cameraTarget.z, this.hero * 0.4, 5, delta);
     this.camera.lookAt(this.cameraTarget);
   }
@@ -625,14 +679,18 @@ export class ProjectArchiveScene {
     const width = Math.max(1, this.canvas.clientWidth || this.shell.clientWidth);
     const height = Math.max(1, this.canvas.clientHeight || 520);
     const compact = this.shell.clientWidth < 820;
+    this.mobileHero = window.innerWidth <= 680;
     this.wideHero = window.matchMedia("(min-width: 1101px) and (min-aspect-ratio: 3 / 2)").matches && width > 1000;
     const baseX = this.wideHero ? -2.35 : 0;
-    const baseY = this.wideHero ? 5.05 : compact ? 4.2 : 3.8;
-    const baseZ = this.wideHero ? 10.2 : compact ? 8.15 : 7.2;
+    const baseY = this.wideHero ? 5.05 : this.mobileHero ? 11.4 : compact ? 4.2 : 3.8;
+    const baseZ = this.wideHero ? 10.2 : this.mobileHero ? 25.5 : compact ? 8.15 : 7.2;
+    const baseTargetY = this.mobileHero ? -2.35 : -0.12;
+    this.scene.fog.near = this.mobileHero ? 22 : 11;
+    this.scene.fog.far = this.mobileHero ? 48 : 26;
     this.renderer.setSize(width, height, false);
     this.camera.aspect = width / height;
     this.camera.position.set(baseX, baseY, baseZ);
-    this.cameraTarget.set(baseX, -0.12, 0);
+    this.cameraTarget.set(baseX, baseTargetY, 0);
     this.camera.lookAt(this.cameraTarget);
     this.camera.updateProjectionMatrix();
     this.renderOnce();
