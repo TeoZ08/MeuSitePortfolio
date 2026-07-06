@@ -79,6 +79,8 @@ function renderProjects() {
 
 function initNavigation() {
   const nav = $(".site-nav");
+  const hero = $(".hero");
+  const immersiveHeroQuery = window.matchMedia("(min-width: 1101px) and (min-aspect-ratio: 3 / 2)");
   const toggle = $("[data-nav-toggle]");
   const menu = $("[data-nav-menu]");
   if (!nav || !toggle || !menu) return;
@@ -102,9 +104,14 @@ function initNavigation() {
     if (event.key === "Escape") close();
   });
 
-  const update = () => nav.classList.toggle("is-scrolled", window.scrollY > 20);
+  const update = () => {
+    const wideHero = immersiveHeroQuery.matches && hero;
+    const heroEnd = wideHero ? hero.offsetTop + hero.offsetHeight - 76 : 20;
+    nav.classList.toggle("is-scrolled", window.scrollY > heroEnd);
+  };
   update();
   window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
 
   const links = $$("a[href^='#']", menu);
   const sections = links.map((link) => $(link.getAttribute("href"))).filter(Boolean);

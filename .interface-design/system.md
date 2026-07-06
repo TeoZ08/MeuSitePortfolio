@@ -5,7 +5,7 @@
 - Usuário principal: recrutadores técnicos, lideranças de engenharia/produto e potenciais colaboradores.
 - Tarefa principal: reconhecer Matteo, explorar projetos reais e chegar a produto, código, currículo ou contato.
 - Sensação: arquivo de trabalho usado de verdade — material, quente, preciso e levemente indisciplinado.
-- Assinatura: caixa-arquivo 3D com quatro pastas de projeto; `teo` aparece apenas como assinatura pequena.
+- Assinatura: ambiente-arquivo WebGL em tela cheia no desktop, com caixa e quatro pastas de projeto; `teo` aparece apenas como assinatura pequena.
 
 ## Domain
 
@@ -17,7 +17,7 @@ Pastas, slots, lombadas, caixa, fichas, recortes, rascunhos, carimbos, código, 
 2. Livro, arquivo e mesa de trabalho; nunca dashboard.
 3. Evidência antes de adjetivo.
 4. Capturas reais; nenhum mockup inventado.
-5. Um único canvas ligado ao arquivo de projetos; nunca um canvas por card.
+5. Um único canvas cobre a hero desktop e situa o arquivo no ambiente; nunca um canvas por card.
 6. Todo texto e toda ação continuam em HTML.
 7. Mobile usa fallback HTML, swipe e snap, sem exigir WebGL ou hover.
 8. Movimento comunica peso e materialidade; não esconde navegação.
@@ -53,13 +53,13 @@ Pastas, slots, lombadas, caixa, fichas, recortes, rascunhos, carimbos, código, 
 
 ### Profundidade
 
-A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras fortes ficam restritas à caixa 3D, às capturas reais, aos arquivos de semestre e ao modal.
+A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras fortes ficam restritas à caixa 3D, às capturas reais, aos arquivos acadêmicos e ao modal.
 
 ## Padrões
 
 - `.section-marker`: índice funcional de seção.
 - `.section-heading`: título editorial + introdução curta.
-- `.archive-explorer`: mecanismo central de seleção de projetos.
+- `.archive-explorer`: camada full-bleed da hero desktop e mecanismo central de seleção de projetos; não é um card ou frame.
 - `.project-case`: captura real + resumo factual + estado atual.
 - `.project-overlay`: dossiê completo com foco retido.
 - `.project-modal-scroll`: única área rolável do dossiê; o cabeçalho pertence à caixa.
@@ -80,7 +80,7 @@ A profundidade vem de sobreposição, perspectiva, material e contraste. Sombras
 
 ## Responsividade
 
-- Acima de 1100 px: hero dividida entre pessoa e arquivo 3D; cases alternados.
+- Acima de 1100 px em orientação suficientemente horizontal: hero inteira é o ambiente WebGL; texto HTML ocupa o espaço negativo à esquerda e o arquivo 3D permanece à direita, sem frame.
 - 921–1100 px: hero ainda dividida, composição comprimida.
 - 681–920 px: hero e cases empilhados; navegação recolhida.
 - Até 680 px: sem WebGL; pastas usam swipe/snap e abrem o mesmo case HTML; nenhuma dependência de hover.

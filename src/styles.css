@@ -1472,6 +1472,193 @@ canvas {
   to { opacity: 1; transform: none; }
 }
 
+@media (min-width: 1101px) and (min-aspect-ratio: 3 / 2) {
+  .site-nav:not(.is-scrolled) {
+    color: var(--paper-light);
+  }
+
+  .site-nav:not(.is-scrolled) .nav-brand img {
+    filter: invert(92%) sepia(12%) saturate(459%) hue-rotate(337deg) brightness(108%);
+  }
+
+  .site-nav:not(.is-scrolled) .nav-links a::after {
+    background: #df6c59;
+  }
+
+  .hero {
+    isolation: isolate;
+    display: flex;
+    max-width: none;
+    min-height: max(780px, 100svh);
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+    color: var(--paper-light);
+    background: #170c0a;
+  }
+
+  .hero::before {
+    z-index: 4;
+    background: linear-gradient(#cf4c3b, rgba(207, 76, 59, 0));
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(15, 7, 6, 0.92) 0%, rgba(18, 9, 8, 0.72) 30%, rgba(18, 9, 8, 0.16) 53%, transparent 72%),
+      radial-gradient(circle at 75% 46%, transparent 0 18%, rgba(74, 20, 16, 0.09) 46%, transparent 72%);
+    pointer-events: none;
+  }
+
+  .hero-copy {
+    z-index: 5;
+    width: min(42vw, 650px);
+  }
+
+  .hero .eyebrow {
+    color: rgba(245, 234, 216, 0.66);
+  }
+
+  .hero h1 {
+    color: var(--paper-bright);
+    text-shadow: 0 2px 30px rgba(12, 5, 4, 0.24);
+  }
+
+  .hero h1 em {
+    color: #d64b3a;
+  }
+
+  .hero-intro {
+    max-width: 590px;
+    color: rgba(245, 234, 216, 0.76);
+  }
+
+  .hero .button {
+    border-color: rgba(245, 234, 216, 0.46);
+  }
+
+  .hero .button-primary {
+    color: var(--ink);
+    border-color: var(--paper-bright);
+    background: var(--paper-bright);
+  }
+
+  .hero .button-primary:hover {
+    color: var(--paper-bright);
+    border-color: #b63b2e;
+    background: #8e281f;
+  }
+
+  .hero .button-quiet {
+    color: var(--paper-light);
+    background: rgba(23, 12, 10, 0.22);
+  }
+
+  .hero .button-quiet:hover {
+    color: var(--ink);
+    background: var(--paper-light);
+  }
+
+  .hero-footnote {
+    max-width: 540px;
+    color: rgba(245, 234, 216, 0.48);
+    border-color: rgba(245, 234, 216, 0.22);
+  }
+
+  .archive-explorer {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    border: 0;
+    color: var(--paper-light);
+    background: transparent;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .archive-explorer::after {
+    content: none;
+  }
+
+  .archive-stage {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    height: auto;
+    overflow: hidden;
+    border: 0;
+    pointer-events: none;
+  }
+
+  .archive-stage canvas {
+    max-width: none;
+    pointer-events: auto;
+  }
+
+  .archive-topline {
+    position: absolute;
+    z-index: 5;
+    top: clamp(6.7rem, 12vh, 8rem);
+    right: var(--gutter);
+    width: min(45vw, 720px);
+    min-height: 0;
+    padding: 0 0 0.9rem;
+    border-color: rgba(245, 234, 216, 0.18);
+    pointer-events: none;
+  }
+
+  .archive-topline h2 {
+    font-size: clamp(1.8rem, 2.2vw, 2.6rem);
+  }
+
+  .archive-instruction {
+    right: var(--gutter);
+    bottom: clamp(9rem, 17vh, 11rem);
+    left: auto;
+    width: min(50vw, 780px);
+  }
+
+  .archive-drag-status {
+    right: var(--gutter);
+    bottom: clamp(11rem, 20vh, 13rem);
+    left: auto;
+    width: min(50vw, 780px);
+  }
+
+  .archive-projects {
+    position: absolute;
+    z-index: 6;
+    right: var(--gutter);
+    bottom: clamp(2rem, 4.5vh, 3.5rem);
+    width: min(50vw, 780px);
+    border-top: 1px solid rgba(245, 234, 216, 0.24);
+    pointer-events: auto;
+  }
+
+  .archive-project {
+    min-height: 76px;
+    padding: 0.7rem 0.8rem;
+    background: rgba(20, 10, 8, 0.18);
+  }
+
+  .archive-project:hover,
+  .archive-project.is-active {
+    background: var(--paper-light);
+  }
+
+  .scroll-cue {
+    z-index: 6;
+    color: rgba(245, 234, 216, 0.66);
+  }
+
+  .scroll-cue i {
+    background: rgba(245, 234, 216, 0.36);
+  }
+}
+
 @media (max-width: 1100px) {
   .hero {
     grid-template-columns: minmax(0, 0.8fr) minmax(490px, 1.2fr);
