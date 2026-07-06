@@ -14,10 +14,10 @@ A versão anterior tinha conteúdo forte, mas colocava uma experiência 3D, um m
 - currículo e e-mail;
 - compatibilidade com GitHub Pages.
 
-## O que foi removido
+## O que foi removido da experiência
 
 - caixa e pastas 3D;
-- Three.js;
+- carregamento e execução de Three.js;
 - interação de arrastar para abrir;
 - modal de projeto;
 - transições cenográficas;
