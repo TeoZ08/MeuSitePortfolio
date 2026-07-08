@@ -1,0 +1,606 @@
+/*
+  Agent Visual Max — camada experimental.
+  Objetivo: elevar impacto visual sem substituir a mecânica principal do Arquivo Impossível.
+  Esta folha entra depois do CSS base e pode ser removida apagando o link no index.html.
+*/
+
+:root {
+  --agent-night: #120d10;
+  --agent-night-2: #211418;
+  --agent-rust: #c23c2f;
+  --agent-rust-hot: #ff5a42;
+  --agent-cyan: #65d7d1;
+  --agent-violet: #8175dd;
+  --agent-gold: #f0c478;
+  --agent-cream: #fff4df;
+  --agent-glass: rgba(255, 244, 223, 0.08);
+  --agent-progress: 0;
+  --mx: 50vw;
+  --my: 50vh;
+}
+
+body.agent-visual-max {
+  cursor: crosshair;
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 90, 66, 0.08), transparent 19rem),
+    radial-gradient(circle at 14% 18%, rgba(129, 117, 221, 0.13), transparent 24rem),
+    linear-gradient(180deg, #160f12 0 36rem, var(--paper) 36rem 100%);
+}
+
+body.agent-visual-max::before,
+body.agent-visual-max::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.agent-visual-max::before {
+  background:
+    linear-gradient(rgba(255, 244, 223, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 244, 223, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(180deg, #000 0, transparent 64rem);
+}
+
+body.agent-visual-max::after {
+  opacity: 0.16;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 7px, rgba(255, 255, 255, 0.045) 8px),
+    radial-gradient(circle at 50% 0%, transparent 0 58%, rgba(18, 13, 16, 0.72));
+  mix-blend-mode: overlay;
+}
+
+.agent-cursor-light {
+  position: fixed;
+  z-index: 4;
+  left: var(--mx);
+  top: var(--my);
+  width: 34rem;
+  height: 34rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 244, 223, 0.16), rgba(255, 90, 66, 0.09) 31%, rgba(129, 117, 221, 0.06) 48%, transparent 69%);
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.agent-scroll-progress {
+  position: fixed;
+  z-index: 140;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  transform: scaleX(var(--agent-progress));
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--agent-rust-hot), var(--agent-gold), var(--agent-cyan));
+  box-shadow: 0 0 18px rgba(255, 90, 66, 0.5);
+  pointer-events: none;
+}
+
+.agent-orbit-field {
+  position: fixed;
+  z-index: 2;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, #000 0, #000 42rem, transparent 58rem);
+}
+
+.agent-orbit-field span {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: clamp(3px, calc(var(--s) * 1px), 8px);
+  height: clamp(3px, calc(var(--s) * 1px), 8px);
+  border: 1px solid rgba(255, 244, 223, 0.48);
+  border-radius: 999px;
+  background: rgba(255, 244, 223, 0.08);
+  box-shadow: 0 0 18px rgba(101, 215, 209, 0.28);
+  opacity: calc(0.22 + var(--o) * 0.42);
+  animation: agentDrift calc(10s + var(--d) * 1s) ease-in-out infinite alternate;
+  animation-delay: calc(var(--d) * -0.7s);
+}
+
+.agent-orbit-field span:nth-child(4n) {
+  border-color: rgba(255, 90, 66, 0.62);
+}
+
+.agent-orbit-field span:nth-child(5n) {
+  border-color: rgba(129, 117, 221, 0.65);
+}
+
+.agent-ambient-label {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  right: -5.2rem;
+  color: rgba(255, 244, 223, 0.2);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: rotate(90deg) translateX(-50%);
+  transform-origin: 0 0;
+}
+
+main,
+.site-nav,
+.project-overlay,
+.folder-transition,
+.toast {
+  position: relative;
+}
+
+main,
+.site-nav {
+  z-index: 5;
+}
+
+.paper-noise {
+  z-index: 6;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+
+.site-nav:not(.is-scrolled) {
+  color: var(--agent-cream);
+}
+
+.site-nav:not(.is-scrolled) .nav-brand img {
+  filter: drop-shadow(0 0 10px rgba(255, 244, 223, 0.22));
+}
+
+.site-nav.is-scrolled {
+  background: rgba(233, 220, 198, 0.78);
+  box-shadow: 0 18px 60px rgba(18, 13, 16, 0.09);
+}
+
+.hero {
+  max-width: none;
+  min-height: 100svh;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 244, 223, 0.14);
+  color: var(--agent-cream);
+  background:
+    radial-gradient(circle at 74% 47%, rgba(194, 60, 47, 0.24), transparent 30rem),
+    radial-gradient(circle at 58% 18%, rgba(101, 215, 209, 0.12), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 244, 223, 0.06), transparent 30%),
+    var(--agent-night);
+  isolation: isolate;
+}
+
+.hero::before {
+  left: calc(var(--gutter) + 0.4rem);
+  background: linear-gradient(var(--agent-rust-hot), rgba(255, 244, 223, 0.12), transparent);
+  box-shadow: 0 0 22px rgba(255, 90, 66, 0.28);
+}
+
+.hero::after {
+  content: "ARQUIVO IMPOSSÍVEL / FIELD NOTES / WEBGL";
+  position: absolute;
+  z-index: 0;
+  right: -0.08em;
+  bottom: -0.19em;
+  max-width: 10ch;
+  color: rgba(255, 244, 223, 0.035);
+  font-family: var(--display);
+  font-size: clamp(8rem, 20vw, 25rem);
+  line-height: 0.72;
+  pointer-events: none;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.hero-copy,
+.archive-explorer,
+.scroll-cue {
+  position: relative;
+  z-index: 3;
+}
+
+.eyebrow {
+  color: color-mix(in srgb, currentColor 58%, var(--agent-cyan));
+}
+
+.hero h1 {
+  max-width: 9ch;
+  text-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
+}
+
+.hero h1 em {
+  color: transparent;
+  background: linear-gradient(90deg, var(--agent-rust-hot), var(--agent-gold), var(--agent-cream));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-intro {
+  color: rgba(255, 244, 223, 0.72);
+}
+
+.hero-footnote {
+  color: rgba(255, 244, 223, 0.55);
+  border-color: rgba(255, 244, 223, 0.18);
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(255, 244, 223, 0.34);
+  backdrop-filter: blur(16px);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent, rgba(255, 244, 223, 0.18), transparent);
+  transform: translateX(-130%);
+  transition: transform 0.55s var(--ease);
+}
+
+.button:hover::after {
+  transform: translateX(130%);
+}
+
+.button-primary {
+  border-color: rgba(255, 90, 66, 0.82);
+  background: linear-gradient(135deg, var(--agent-rust), var(--red-deep));
+  box-shadow: 0 14px 42px rgba(194, 60, 47, 0.26);
+}
+
+.button-quiet {
+  background: rgba(255, 244, 223, 0.08);
+}
+
+.archive-explorer {
+  overflow: hidden;
+  border-color: rgba(255, 244, 223, 0.22);
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 90, 66, 0.18), transparent 19rem),
+    linear-gradient(rgba(255, 244, 223, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 244, 223, 0.04) 1px, transparent 1px),
+    #120b0e;
+  background-size: auto, 34px 34px, 34px 34px, auto;
+  box-shadow:
+    0 0 0 1px rgba(255, 244, 223, 0.04),
+    0 30px 90px rgba(0, 0, 0, 0.48),
+    0 0 70px rgba(194, 60, 47, 0.16);
+}
+
+.archive-explorer::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(101, 215, 209, 0.08), transparent),
+    repeating-linear-gradient(180deg, transparent 0 8px, rgba(255, 244, 223, 0.035) 9px);
+  opacity: 0.75;
+  pointer-events: none;
+  transform: translateX(-100%);
+  animation: agentScan 7s ease-in-out infinite;
+}
+
+.archive-explorer::after {
+  right: -18px;
+  bottom: -18px;
+  border-color: rgba(255, 90, 66, 0.86);
+  filter: drop-shadow(0 0 18px rgba(255, 90, 66, 0.24));
+}
+
+.archive-topline {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 244, 223, 0.035);
+}
+
+.archive-topline p,
+.archive-state-label,
+.archive-instruction,
+.archive-drag-status {
+  text-shadow: 0 0 14px rgba(255, 90, 66, 0.24);
+}
+
+.archive-stage {
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.35);
+}
+
+.archive-stage::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border: 1px solid rgba(255, 244, 223, 0.06);
+  background: radial-gradient(circle at center, transparent 48%, rgba(0, 0, 0, 0.24));
+  pointer-events: none;
+}
+
+.archive-project {
+  min-height: 102px;
+  background: rgba(255, 244, 223, 0.03);
+  backdrop-filter: blur(10px);
+}
+
+.archive-project::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(255, 244, 223, 0.13);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  transform: scale(0.96);
+}
+
+.archive-project:hover::after,
+.archive-project.is-active::after {
+  opacity: 1;
+  transform: none;
+}
+
+.archive-project:hover,
+.archive-project.is-active {
+  color: var(--agent-night);
+  background: linear-gradient(135deg, var(--paper-bright), color-mix(in srgb, var(--folder), white 78%));
+}
+
+.scroll-cue {
+  color: rgba(255, 244, 223, 0.62);
+}
+
+.section {
+  position: relative;
+  isolation: isolate;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -5rem;
+  right: 0;
+  left: 0;
+  height: 18rem;
+  background: linear-gradient(180deg, rgba(18, 13, 16, 0.42), transparent);
+  pointer-events: none;
+}
+
+.section-heading h2,
+.college-copy h2,
+.contact-layout h2 {
+  letter-spacing: -0.06em;
+}
+
+.project-case {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(26, 18, 16, 0.2);
+  background:
+    linear-gradient(135deg, rgba(255, 248, 233, 0.82), rgba(233, 220, 198, 0.54)),
+    radial-gradient(circle at 88% 12%, color-mix(in srgb, var(--folder), transparent 73%), transparent 18rem);
+  box-shadow:
+    0 30px 80px rgba(41, 24, 18, 0.13),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.project-case::before {
+  content: "CASE FILE";
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.25rem);
+  right: clamp(0.75rem, 2vw, 1.25rem);
+  z-index: 2;
+  padding: 0.38rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--folder), black 12%);
+  color: color-mix(in srgb, var(--folder), black 24%);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  transform: rotate(2.2deg);
+}
+
+.project-case::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 auto;
+  width: clamp(9rem, 20vw, 18rem);
+  height: clamp(9rem, 20vw, 18rem);
+  background: radial-gradient(circle, color-mix(in srgb, var(--folder), transparent 50%), transparent 68%);
+  filter: blur(18px);
+  opacity: 0.22;
+  pointer-events: none;
+  transform: translate(20%, 30%);
+}
+
+.project-image {
+  overflow: hidden;
+  background: #120d10;
+}
+
+.project-image img {
+  filter: saturate(0.96) contrast(1.06);
+  transform: scale(1.01);
+  transition: transform 0.8s var(--ease), filter 0.8s ease;
+}
+
+.project-image:hover img,
+.project-case:hover .project-image img {
+  filter: saturate(1.1) contrast(1.08);
+  transform: scale(1.05) rotate(-0.35deg);
+}
+
+.project-image-meta,
+.project-image-action {
+  backdrop-filter: blur(14px);
+}
+
+.project-now {
+  border-left: 3px solid var(--folder);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--folder), transparent 88%), transparent);
+}
+
+.semester-file,
+.learning-ledger article,
+.contact-layout {
+  border: 1px solid rgba(26, 18, 16, 0.22);
+  box-shadow: 0 22px 70px rgba(41, 24, 18, 0.1);
+}
+
+.semester-file {
+  background:
+    linear-gradient(rgba(26, 18, 16, 0.05) 1px, transparent 1px),
+    var(--paper-bright);
+  background-size: 100% 2.2rem;
+}
+
+.learning-ledger article {
+  background: linear-gradient(135deg, rgba(255, 248, 233, 0.86), rgba(233, 220, 198, 0.58));
+}
+
+.contact-layout {
+  background:
+    radial-gradient(circle at 88% 15%, rgba(194, 60, 47, 0.18), transparent 22rem),
+    linear-gradient(135deg, var(--agent-night), #261618);
+  color: var(--agent-cream);
+}
+
+.contact-layout .eyebrow,
+.contact-layout h2 {
+  color: var(--agent-cream);
+}
+
+.email-link {
+  color: var(--agent-cream);
+  text-shadow: 0 0 28px rgba(255, 90, 66, 0.2);
+}
+
+.contact-links a {
+  border-color: rgba(255, 244, 223, 0.3);
+  color: var(--agent-cream);
+  background: rgba(255, 244, 223, 0.06);
+}
+
+.site-footer {
+  color: rgba(26, 18, 16, 0.72);
+}
+
+.project-overlay {
+  z-index: 180;
+}
+
+.project-overlay.is-open {
+  backdrop-filter: blur(22px);
+  background:
+    radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--folder), transparent 60%), transparent 22rem),
+    rgba(18, 13, 16, 0.72);
+}
+
+.project-modal {
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.52), 0 0 0 1px rgba(255, 244, 223, 0.12);
+}
+
+.modal-hero img {
+  box-shadow: 0 24px 70px color-mix(in srgb, var(--folder), transparent 76%);
+}
+
+.folder-transition {
+  box-shadow: 0 18px 60px color-mix(in srgb, var(--folder), transparent 70%);
+}
+
+@keyframes agentDrift {
+  from {
+    transform: translate3d(-0.35rem, -0.6rem, 0) scale(0.86);
+  }
+  to {
+    transform: translate3d(0.55rem, 0.75rem, 0) scale(1.12);
+  }
+}
+
+@keyframes agentScan {
+  0%, 58% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  64% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .project-case {
+    animation: agentCaseDepth both linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 38%;
+  }
+
+  @keyframes agentCaseDepth {
+    from {
+      opacity: 0.58;
+      transform: translateY(4rem) scale(0.96);
+      filter: blur(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+}
+
+@media (min-width: 1101px) and (min-aspect-ratio: 3 / 2) {
+  .hero {
+    grid-template-columns: minmax(360px, 0.76fr) minmax(620px, 1.24fr);
+  }
+
+  .archive-explorer {
+    transform: perspective(1200px) rotateY(-4deg) rotateX(1deg);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 760px) {
+  body.agent-visual-max {
+    cursor: auto;
+  }
+
+  .agent-cursor-light,
+  .agent-ambient-label {
+    display: none;
+  }
+
+  .hero {
+    background:
+      radial-gradient(circle at 56% 30%, rgba(194, 60, 47, 0.25), transparent 18rem),
+      var(--agent-night);
+  }
+
+  .hero::after {
+    font-size: 32vw;
+  }
+
+  .archive-explorer {
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-orbit-field span,
+  .archive-explorer::before,
+  .project-case {
+    animation: none !important;
+  }
+
+  .agent-cursor-light {
+    display: none;
+  }
+}
