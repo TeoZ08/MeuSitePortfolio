@@ -1,7 +1,16 @@
 import { defineConfig } from "vite";
 
+const hybridEntry = {
+  name: "hybrid-subtraction-entry",
+  transform(code, id) {
+    if (!id.endsWith("/src/main.js")) return null;
+    return `${code}\nimport "./hybrid.js";\n`;
+  }
+};
+
 export default defineConfig({
   base: "/MeuSitePortfolio/",
+  plugins: [hybridEntry],
   server: {
     host: true
   },
