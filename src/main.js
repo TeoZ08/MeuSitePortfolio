@@ -26,7 +26,10 @@ const ui = new InterfaceController(projects, {
     if (["hub", "project", "traveling", "returning"].includes(state)) world?.setPointer(x, y);
   },
   onCanvasClick: (x, y) => world?.pick(x, y),
-  onIntroMove: (x, z) => introWorld?.setTouchDirection(x, z)
+  onIntroMove: (x, z) => {
+    introWorld?.setTouchDirection(x, z);
+    world?.setTouchDirection(x, z);
+  }
 });
 
 function setState(next) {

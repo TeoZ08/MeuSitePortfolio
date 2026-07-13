@@ -29,6 +29,7 @@ export class PortfolioWorld {
     this.screenHitboxes = [];
     this.stations = [];
     this.keys = new Set();
+    this.touchDirection = new THREE.Vector2();
     this.robotIdle = 0;
     this.hubCenter = new THREE.Vector3(0, 1.28, 1.5);
     this.startHover = 0;
@@ -493,6 +494,14 @@ export class PortfolioWorld {
     if (active) this.clock.getDelta();
   }
 
+  setTouchDirection(x, z) {
+    if (this.mode !== "hub") {
+      this.touchDirection.set(0, 0);
+      return;
+    }
+    this.touchDirection.set(x, z);
+  }
+
   async focus(index) {
     const station = this.stations[index];
     if (!station) return;
@@ -500,6 +509,7 @@ export class PortfolioWorld {
     this.activeIndex = index;
     this.hoverIndex = -1;
     this.keys.clear();
+    this.touchDirection.set(0, 0);
     this.cameraRig.setMode("traveling");
     const { position, look } = this.getProjectView(station);
     const robotPosition = station.localToWorld(station.userData.robotAnchor.clone());
@@ -517,6 +527,7 @@ export class PortfolioWorld {
   async overview() {
     this.mode = "returning";
     this.cameraRig.setMode("returning");
+    this.touchDirection.set(0, 0);
     this.guideRobot?.setPresentationMode(false);
     this.guideRobot?.returnToHubPosition();
     const { position, look } = this.getHubView();
@@ -588,7 +599,10 @@ export class PortfolioWorld {
       this.keys.add(event.code);
     };
     this.onKeyUp = (event) => this.keys.delete(event.code);
-    this.onBlur = () => this.keys.clear();
+    this.onBlur = () => {
+      this.keys.clear();
+      this.touchDirection.set(0, 0);
+    };
     addEventListener("resize", this.onResize, { passive: true });
     addEventListener("keydown", this.onKeyDown);
     addEventListener("keyup", this.onKeyUp);
@@ -601,8 +615,8 @@ export class PortfolioWorld {
 
   updateGuideMovement(delta) {
     if (this.mode !== "hub" || !this.guideRobot) return;
-    const directionX = Number(this.keys.has("KeyD")) - Number(this.keys.has("KeyA"));
-    const directionZ = Number(this.keys.has("KeyS")) - Number(this.keys.has("KeyW"));
+    const directionX = Number(this.keys.has("KeyD")) - Number(this.keys.has("KeyA")) + this.touchDirection.x;
+    const directionZ = Number(this.keys.has("KeyS")) - Number(this.keys.has("KeyW")) + this.touchDirection.y;
     const moving = this.guideRobot.move(directionX, directionZ, delta, this.hubCenter, 8.6);
     if (moving) {
       this.robotIdle = 0;
