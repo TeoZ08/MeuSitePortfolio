@@ -1,15 +1,14 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/MeuSitePortfolio/",
+  base: "./",
   server: {
-    host: true
+    host: "0.0.0.0",
+    allowedHosts: ["terminal.local"]
   },
   build: {
     target: "es2022",
     sourcemap: false,
-    // Three.js fica em um chunk dinâmico de ~509 kB (~128 kB gzip).
-    // O limite documenta que esse custo é intencional e não bloqueia o HTML.
-    chunkSizeWarningLimit: 550
+    chunkSizeWarningLimit: 600
   }
 });

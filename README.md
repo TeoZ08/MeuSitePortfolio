@@ -1,25 +1,30 @@
-# Matteo — portfólio 3D
+# Portfólio Matteo — Explore meu mundo
 
-Portfólio oficial de Matteo Lima Scotti. A página combina uma apresentação editorial com o “Arquivo Impossível”: uma caixa 3D com quatro pastas de projetos que podem ser puxadas, abertas e devolvidas ao arquivo.
+Portfólio em tela inteira construído como uma experiência 3D. Antes do hub, o visitante conduz o robô por uma ruína tomada pela vegetação, encontra um terminal e entra no portfólio pela tela do monitor.
 
-## Stack
+Os projetos mostrados na sala são destaques. Outros trabalhos continuam disponíveis no GitHub de Matteo.
 
-- Vite;
-- JavaScript com ES modules;
-- Three.js;
-- CSS responsivo;
-- GitHub Actions e GitHub Pages.
+## Experiência
 
-## Desenvolvimento local
+- **Entrada:** caminho externo em luz de fim de tarde, movimento em terceira pessoa, ruínas, vegetação e um terminal interativo.
+- **Transição:** o monitor desperta quando o robô se aproxima; clique ou `E` leva a câmera para dentro da tela e revela o hub.
+- **Hub:** estandes distribuídos em semicírculo, câmera reagindo ao mouse e robô-guia controlável por WASD.
+- **useART:** camiseta 3D, produto e checkout.
+- **Jarvis Acadêmico:** EVA, monitores, fontes e documentos.
+- **AquaIA:** tubulação modular, medidor, mapa e indicadores.
+- **Portal UnAPI:** teclado, mouse e atividades usadas nas oficinas.
+- **Retorno:** botão `×` permanente, tecla `Esc` e histórico do navegador; no hub, **Voltar à entrada** reinicia o percurso externo.
 
-Requer Node.js LTS e npm.
+## Executar
+
+Requer Node.js 20 ou superior.
 
 ```bash
-npm ci
+npm install
 npm run dev
 ```
 
-## Validação
+Versão de produção:
 
 ```bash
 npm run check
@@ -27,36 +32,30 @@ npm run build
 npm run preview
 ```
 
-`npm run preview` valida a saída estática gerada em `dist`. A pasta `dist` é descartável e não deve ser editada ou commitada.
+## Controles
 
-## GitHub Pages
+- Use `W`, `A`, `S` e `D` para mover o robô na introdução e no hub.
+- Perto do terminal, clique na tela ou pressione `E`. Também existe a opção **Ir direto aos projetos**.
+- Mova o mouse para observar; a câmera acompanha o deslocamento de forma sutil.
+- Clique em um estande para o robô se aproximar e visitá-lo.
+- Clique nas telas do estande para ampliar as capturas.
+- Use o botão `×`, a tecla `Esc` ou o botão voltar do navegador para retornar ao hub.
+- No hub, use **Voltar à entrada** para rever o percurso e o terminal.
+- No celular, arraste para observar.
 
-O repositório é publicado em:
+## Estrutura principal
 
-```text
-https://teoz08.github.io/MeuSitePortfolio/
-```
+- `src/main.js`: fluxo entre entrada, hub e projetos.
+- `src/world/PortfolioWorld.js`: ambiente, estandes e interações 3D.
+- `src/world/IntroWorld.js`: cenário externo, terminal, controles e transição inicial.
+- `src/world/CameraRig.js`: movimentos e rotas da câmera.
+- `src/world/GuideRobot.js`: comportamento do robô-guia.
+- `src/world/stations/`: composição individual de cada projeto.
+- `src/ui/InterfaceController.js`: entrada, informações, ajuda e galerias.
+- `src/data/portfolio.js`: textos, links e capturas.
+- `public/models/`: modelos GLB usados no hub.
+- `public/intro/`: mesa, monitor, ruína e vegetação já reduzidos para o navegador.
 
-Como o site é servido em um subdiretório, o Vite usa `base: "/MeuSitePortfolio/"`. Assets públicos utilizam `import.meta.env.BASE_URL` ou substituição de `%BASE_URL%` no HTML.
+Os objetos auxiliares presentes nos GLBs do teclado e da EVA são removidos antes da normalização. A rede da AquaIA usa apenas um conjunto coerente de peças do arquivo de canos. Esta revisão parte da versão 14 — incluindo a orientação frontal corrigida do robô, o WASD e os enquadramentos dos projetos — e troca somente a entrada por uma cena externa independente.
 
-Pushes na branch `main` acionam [.github/workflows/deploy.yml](.github/workflows/deploy.yml), que:
-
-1. instala dependências com `npm ci`;
-2. executa `npm run check`;
-3. gera `dist` com `npm run build`;
-4. publica o artifact pelo GitHub Pages.
-
-O deploy não depende de commitar `dist`.
-
-## Estrutura
-
-```text
-public/                  assets estáticos e currículo
-src/data/projects.js     conteúdo dos quatro projetos
-src/scene/               caixa, pastas e interação Three.js
-src/main.js              navegação, cases, modal e ponte DOM/WebGL
-src/styles.css           sistema visual e responsividade
-docs/                    arquitetura, QA e status final
-```
-
-Não commitar `node_modules`, arquivos `.env`, tokens, credenciais ou builds locais.
+Se WebGL não estiver disponível, o site apresenta uma navegação simplificada com os mesmos textos e links.

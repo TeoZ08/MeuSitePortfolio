@@ -3,216 +3,185 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portfólio de Matteo Lima Scotti: projetos de software, IA aplicada, interfaces e experimentos 3D."
-    />
-    <meta name="theme-color" content="#e9dcc6" />
-    <meta property="og:title" content="Matteo — Projetos e arquivo" />
-    <meta
-      property="og:description"
-      content="Projetos, ferramentas e experimentos de Matteo Lima Scotti."
-    />
+    <meta name="description" content="Portfólio 3D de Matteo Lima Scotti — software, interfaces e inteligência artificial aplicada." />
+    <meta name="theme-color" content="#090605" />
+    <meta property="og:title" content="Matteo — Explore meu mundo" />
+    <meta property="og:description" content="Projetos em destaque dentro de uma experiência 3D interativa." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="%BASE_URL%og-cover.png" />
-    <title>Matteo — Projetos e arquivo</title>
-
+    <title>Matteo — Explore meu mundo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="icon" href="%BASE_URL%identity/logo-teo.png" type="image/png" />
+    <link rel="stylesheet" href="/src/styles.css" />
     <script type="module" src="/src/main.js"></script>
   </head>
-
   <body>
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <div class="paper-noise" aria-hidden="true"></div>
+    <a class="skip-link" href="#accessible-projects">Ir para os projetos</a>
 
-    <nav class="site-nav" aria-label="Navegação principal">
-      <a class="nav-brand" href="#inicio" aria-label="Matteo, voltar ao início">
-        <img
-          src="%BASE_URL%identity/logo-teo.png"
-          alt=""
-          width="34"
-          height="34"
-        />
-        <span>Matteo</span>
-      </a>
+    <div class="app" data-app data-state="loading" data-active="none">
+      <header class="topbar" data-topbar>
+        <button class="identity" type="button" data-open-profile aria-label="Abrir perfil de Matteo">
+          <img src="%BASE_URL%identity/logo-teo.png" alt="" width="30" height="30" />
+          <span><strong>MATTEO</strong><small>CIÊNCIA DA COMPUTAÇÃO · UFMS</small></span>
+        </button>
 
-      <button
-        class="nav-toggle"
-        type="button"
-        aria-label="Abrir menu"
-        aria-expanded="false"
-        data-nav-toggle
-      >
-        <span></span><span></span>
-      </button>
-
-      <div class="nav-links" data-nav-menu>
-        <a href="#projetos">Projetos</a>
-        <a href="#faculdade">Faculdade</a>
-        <a href="#contato">Contato</a>
-      </div>
-    </nav>
-
-    <main id="conteudo">
-      <header class="hero" id="inicio">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Matteo Lima Scotti · Campo Grande, MS</p>
-          <h1>Oi, sou <em>Matteo.</em></h1>
-          <div class="mobile-archive-spacer" aria-hidden="true"></div>
-          <p class="hero-intro">
-            Estudo Ciência da Computação e construo software para investigar problemas concretos. Aqui reuni produtos, ferramentas e protótipos em diferentes estágios, com código, decisões e limites visíveis.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projetos">Ver projetos <span>↓</span></a>
-            <a class="button button-quiet" href="#contato">Contato <span>↘</span></a>
-          </div>
-          <div class="hero-footnote">
-            <span>Ciência da Computação · UFMS</span>
-            <span>Software · interfaces · IA aplicada</span>
-          </div>
+        <div class="world-state" aria-live="polite">
+          <i></i><span data-world-state>PREPARANDO O MUNDO</span>
         </div>
 
-        <section class="archive-explorer" aria-labelledby="archive-title" data-archive-shell>
-          <div class="archive-topline">
-            <div>
-              <p>ARQUIVO DE PROJETOS</p>
-              <h2 id="archive-title">Puxe uma pasta.</h2>
-            </div>
-            <span class="archive-state-label" data-archive-state-label>PRONTO PARA PUXAR</span>
+        <nav class="top-actions" aria-label="Links principais">
+          <a href="https://github.com/TeoZ08" target="_blank" rel="noopener">GitHub <span>↗</span></a>
+          <button type="button" data-open-contact>Contato</button>
+        </nav>
+      </header>
+
+      <main class="experience" aria-label="Portfólio 3D interativo">
+        <canvas class="intro-canvas" data-intro-canvas aria-hidden="true"></canvas>
+        <canvas class="world-canvas" data-world-canvas aria-hidden="true"></canvas>
+        <div class="world-fallback" data-world-fallback aria-hidden="true">
+          <div class="fallback-orbit"></div>
+          <div class="fallback-light"></div>
+        </div>
+        <div class="world-vignette" aria-hidden="true"></div>
+
+        <section class="intro-interface" data-intro-interface aria-labelledby="intro-title">
+          <div class="intro-heading">
+            <p>CAMPO GRANDE, MS · 2026</p>
+            <h1 id="intro-title">Explore meu mundo!</h1>
+            <span>Conduza o robô até o terminal.</span>
           </div>
 
-          <div class="archive-stage">
-            <canvas data-archive-scene aria-hidden="true"></canvas>
-            <div class="archive-fallback" data-archive-fallback aria-hidden="true" hidden></div>
-            <div class="archive-instruction" aria-hidden="true">
-              <span>Arraste o fundo para girar</span><span>Puxe uma pasta para abrir</span>
-            </div>
-            <div class="archive-drag-status" data-archive-drag-status aria-hidden="true">
-              <span data-archive-drag-copy>PUXE PARA ABRIR</span>
-              <i><b data-archive-progress></b></i>
-            </div>
+          <div class="intro-mission" aria-live="polite">
+            <small>01 / CAMINHO</small>
+            <strong>Encontre o terminal</strong>
+            <span>Alguns trabalhos começam com uma ideia. Este começa com um passeio.</span>
           </div>
 
-          <div class="archive-projects" data-archive-list aria-label="Pastas de projeto"></div>
+          <div class="intro-controls" aria-label="Controles da introdução">
+            <div class="intro-key-grid" aria-hidden="true">
+              <i></i><kbd>W</kbd><i></i><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+            </div>
+            <span><strong>WASD</strong> para caminhar</span>
+          </div>
 
-          <div class="mobile-pull-control" data-mobile-pull-control>
-            <span><small>Pasta ativa</small><strong data-mobile-pull-name>useART</strong></span>
-            <button type="button" data-mobile-pull aria-label="Segure e puxe para abrir a pasta useART">
-              <span>Segure e puxe</span><i aria-hidden="true">↑</i>
-            </button>
+          <div class="intro-touch-pad" aria-label="Controles de movimento por toque">
+            <i></i><button type="button" data-intro-move="up" aria-label="Mover para frente">↑</button><i></i>
+            <button type="button" data-intro-move="left" aria-label="Mover para a esquerda">←</button>
+            <button type="button" data-intro-move="down" aria-label="Mover para trás">↓</button>
+            <button type="button" data-intro-move="right" aria-label="Mover para a direita">→</button>
+          </div>
+
+          <button class="terminal-prompt enter-world" type="button" data-enter-world data-terminal-prompt aria-hidden="true">
+            <small>TERMINAL AO ALCANCE</small>
+            <span>ENTRAR NO PORTFÓLIO</span>
+            <i></i>
+            <b>clique ou pressione E</b>
+          </button>
+
+          <button class="skip-intro" type="button" data-skip-intro>Ir direto aos projetos <span>→</span></button>
+        </section>
+
+        <div class="loading" data-loading role="status" aria-live="polite">
+          <div><span>CARREGANDO MUNDO</span><strong data-loading-value>0%</strong></div>
+          <i><b data-loading-bar></b></i>
+        </div>
+
+        <div class="hub-hint" data-hub-hint aria-live="polite">
+          <span>Mova o mouse para olhar ao redor.</span>
+          <strong>Escolha um estande.</strong>
+        </div>
+
+        <section class="project-interface" data-project-interface aria-hidden="true" tabindex="-1">
+          <p class="project-code"><span data-project-number></span><span data-project-context></span></p>
+          <h2 data-project-title></h2>
+          <p class="project-summary" data-project-summary></p>
+          <dl class="project-facts" data-project-facts></dl>
+          <p class="project-current"><small>AGORA</small><span data-project-current></span></p>
+          <div class="project-actions">
+            <button type="button" data-open-gallery>Ver telas</button>
+            <button type="button" data-open-notes>Como foi construído</button>
+            <div data-project-links></div>
           </div>
         </section>
 
-        <a class="scroll-cue" href="#projetos"><span>role para continuar</span><i></i></a>
-      </header>
+        <button class="return-hub" type="button" data-return-hub aria-label="Voltar ao hub">
+          <span>Voltar ao hub</span><strong aria-hidden="true">×</strong>
+        </button>
 
-      <section class="projects section" id="projetos">
-        <div class="section-marker reveal"><span>01</span><p>Projetos</p></div>
-        <div class="section-heading reveal">
-          <h2>Projetos</h2>
-          <p>Escolhi estes porque cada um me obrigou a aprender algo diferente.</p>
-        </div>
-        <div class="project-list" data-project-list></div>
-      </section>
+        <button class="exit-experience" type="button" data-exit-experience>
+          <span aria-hidden="true">←</span><strong>Voltar à entrada</strong>
+        </button>
 
-      <section class="college section" id="faculdade">
-        <div class="section-marker reveal"><span>02</span><p>Faculdade</p></div>
-        <div class="college-layout">
-          <div class="college-copy reveal">
-            <p class="eyebrow">Ciência da Computação · UFMS</p>
-            <h2>Faculdade</h2>
-            <p>Na UFMS, estudo a base que sustenta o trabalho: algoritmos, arquitetura, matemática e sistemas.</p>
-            <p>
-              Uso os projetos para testar essa base em problemas reais e registrar as decisões que funcionaram — e as que ainda precisam mudar.
-            </p>
-          </div>
-          <div class="semester-file reveal">
-            <div class="semester-current">
-              <span>FORMAÇÃO</span>
-              <strong>Ciência da Computação</strong>
-              <small>UFMS</small>
-            </div>
-            <div class="semester-next">
-              <span>INTERESSES</span>
-              <strong>Produto e sistemas</strong>
-              <small>IA aplicada</small>
-            </div>
-            <p class="semester-note">fundamentos → projetos → perguntas novas → voltar aos fundamentos</p>
-          </div>
-          <div class="learning-ledger reveal">
-            <article><span>BASE</span><h3>Algoritmos e sistemas</h3><p>Estruturas, arquitetura, matemática e teoria.</p></article>
-            <article><span>PRÁTICA</span><h3>Software que sai do editor</h3><p>Web, APIs, deploy, dados e observabilidade.</p></article>
-            <article><span>EXTENSÃO</span><h3>Tecnologia com contexto</h3><p>Ensinar pessoas idosas tornou acessibilidade uma questão concreta.</p></article>
-          </div>
-        </div>
-      </section>
+        <button class="help-trigger" type="button" data-help-trigger aria-label="Mostrar controles">?</button>
+        <aside class="help-panel" data-help-panel aria-hidden="true">
+          <button type="button" data-close-help aria-label="Fechar ajuda">×</button>
+          <p>CONTROLES</p>
+          <span><kbd>Mouse</kbd> observar</span>
+          <span><kbd>WASD</kbd> mover o robô</span>
+          <span><kbd>Clique</kbd> explorar</span>
+          <span><kbd>Esc</kbd> voltar ao hub</span>
+          <small>No celular, arraste para observar.</small>
+        </aside>
 
-      <section class="contact section" id="contato">
-        <div class="section-marker reveal"><span>03</span><p>Contato</p></div>
-        <div class="contact-layout reveal">
-          <p class="eyebrow">Contato</p>
-          <h2>Gostou de algum projeto ou quer conversar sobre tecnologia?</h2>
-          <button type="button" class="email-link" data-copy="matteoscotti10@gmail.com">
-            <span>matteoscotti10</span><span>@gmail.com</span>
-          </button>
-          <div class="contact-links">
-            <a href="https://github.com/TeoZ08" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="%BASE_URL%curriculo-matteo-2026.pdf" download>Currículo PDF ↓</a>
-          </div>
-        </div>
-        <footer class="site-footer">
-          <span>Matteo Lima Scotti</span>
-          <span>Campo Grande · MS</span>
-          <span>© <b data-year>2026</b></span>
-          <img
-            src="%BASE_URL%identity/logo-teo.png"
-            alt="teo"
-            width="42"
-            height="42"
-          />
-        </footer>
-      </section>
-    </main>
-
-    <div class="project-overlay" data-project-overlay aria-hidden="true" inert>
-      <article class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <header class="modal-head">
-          <div><span data-modal-index></span><p data-modal-status></p></div>
-          <button type="button" data-close-project aria-label="Fechar projeto">Fechar <span>×</span></button>
-        </header>
-        <div class="project-modal-scroll" data-project-modal-scroll tabindex="0" aria-label="Conteúdo do projeto">
-          <div class="modal-hero">
-            <div><p class="eyebrow" data-modal-kind></p><h2 id="modal-title" data-modal-title></h2><p data-modal-summary></p></div>
-            <img data-modal-image src="%BASE_URL%projects/useart-home.webp" alt="" />
-          </div>
-          <div class="modal-story">
-            <section><span>01 · Como começou</span><p data-modal-started></p></section>
-            <section><span>02 · O problema real</span><p data-modal-problem></p></section>
-            <section><span>03 · O que mudou</span><p data-modal-decision></p></section>
-            <section><span>04 · Estado atual</span><p data-modal-current></p></section>
-            <section><span>05 · Limite atual</span><p data-modal-limit></p></section>
-            <section><span>06 · Próximo passo</span><p data-modal-next></p></section>
-          </div>
-          <footer class="modal-footer"><div data-modal-tags></div><nav data-modal-links aria-label="Links do projeto"></nav></footer>
-        </div>
-      </article>
+        <nav class="accessible-projects" id="accessible-projects" data-accessible-projects aria-label="Projetos em destaque"></nav>
+      </main>
     </div>
 
-    <div class="folder-transition" data-folder-transition aria-hidden="true">
-      <span class="folder-transition-tab"></span>
-      <div class="folder-transition-label">
-        <span data-transition-index></span>
-        <strong data-transition-title></strong>
+    <dialog class="sheet profile-sheet" data-profile-dialog>
+      <div class="sheet-inner">
+        <button class="sheet-close" type="button" data-close-dialog aria-label="Fechar perfil">×</button>
+        <p class="eyebrow">PERFIL</p>
+        <h2>Matteo Lima Scotti</h2>
+        <p class="sheet-lead">Estudo Ciência da Computação na UFMS e gosto de acompanhar o software inteiro: a interface, as regras no servidor, os dados e o que acontece quando alguém começa a usar de verdade.</p>
+        <div class="profile-grid">
+          <article><span>BASE</span><h3>Computação</h3><p>Algoritmos, arquitetura, matemática e sistemas.</p></article>
+          <article><span>PRÁTICA</span><h3>Web e operação</h3><p>Interfaces, APIs, bancos, deploy e manutenção.</p></article>
+          <article><span>INTERESSE</span><h3>IA aplicada</h3><p>RAG, agentes e ferramentas que deixam seus limites visíveis.</p></article>
+          <article><span>LOCAL</span><h3>Campo Grande</h3><p>Mato Grosso do Sul, Brasil.</p></article>
+        </div>
+        <a class="sheet-download" href="%BASE_URL%curriculo-matteo-2026.pdf" download>Baixar currículo <span>↓</span></a>
       </div>
-      <img data-transition-image src="%BASE_URL%projects/useart-home.webp" alt="" />
-    </div>
+    </dialog>
 
-    <div class="toast" data-toast aria-live="polite"></div>
+    <dialog class="sheet contact-sheet" data-contact-dialog>
+      <div class="sheet-inner">
+        <button class="sheet-close" type="button" data-close-dialog aria-label="Fechar contato">×</button>
+        <p class="eyebrow">CONTATO</p>
+        <h2>Podemos conversar por aqui.</h2>
+        <a class="contact-address" href="mailto:matteoscotti10@gmail.com">matteoscotti10<br />@gmail.com</a>
+        <div class="contact-options">
+          <a href="https://github.com/TeoZ08" target="_blank" rel="noopener"><span>GitHub</span><strong>@TeoZ08 ↗</strong></a>
+          <a href="%BASE_URL%curriculo-matteo-2026.pdf" download><span>Currículo</span><strong>PDF ↓</strong></a>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="gallery" data-gallery-dialog>
+      <div class="gallery-shell">
+        <header>
+          <div><span data-gallery-project></span><strong data-gallery-title></strong></div>
+          <button type="button" data-close-dialog aria-label="Fechar galeria">×</button>
+        </header>
+        <figure>
+          <img data-gallery-image alt="" />
+          <figcaption><span data-gallery-index></span><p data-gallery-caption></p></figcaption>
+        </figure>
+        <div class="gallery-controls">
+          <button type="button" data-gallery-prev aria-label="Tela anterior">← Anterior</button>
+          <div data-gallery-thumbs></div>
+          <button type="button" data-gallery-next aria-label="Próxima tela">Próxima →</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="notes" data-notes-dialog>
+      <header>
+        <div><span data-notes-number></span><h2 data-notes-title></h2></div>
+        <button type="button" data-close-dialog aria-label="Fechar detalhes">×</button>
+      </header>
+      <div class="notes-list" data-notes-list></div>
+    </dialog>
   </body>
 </html>
