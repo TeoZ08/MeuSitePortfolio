@@ -426,6 +426,41 @@ export class PortfolioWorld {
     this.startHoverTarget = value ? 1 : 0;
   }
 
+  isCompactViewport() {
+    return innerWidth <= 700 || innerHeight > innerWidth;
+  }
+
+  getHubView() {
+    if (this.isCompactViewport()) {
+      return {
+        position: new THREE.Vector3(0, 5.15, 17.35),
+        look: new THREE.Vector3(0, 2.18, -3.7)
+      };
+    }
+    return {
+      position: new THREE.Vector3(0, 4.55, 14.8),
+      look: new THREE.Vector3(0, 2.05, -4.3)
+    };
+  }
+
+  getProjectView(station) {
+    const position = station.localToWorld(station.userData.cameraAnchor.clone());
+    const look = station.localToWorld(station.userData.lookAnchor.clone());
+    if (!this.isCompactViewport()) return { position, look };
+
+    // Em retrato, a âncora local recua e aponta ligeiramente à esquerda. Assim
+    // o título, o objeto e as telas cabem no enquadramento de cada estande.
+    return {
+      position: station.localToWorld(new THREE.Vector3(-0.05, 3.75, 9.3)),
+      look: station.localToWorld(new THREE.Vector3(-0.38, 2.34, 1.25))
+    };
+  }
+
+  setCameraFraming() {
+    this.camera.fov = this.isCompactViewport() ? 53 : 43;
+    this.camera.updateProjectionMatrix();
+  }
+
   async enterHub() {
     this.mode = "entering";
     this.cameraRig.setMode("entering");
@@ -433,8 +468,7 @@ export class PortfolioWorld {
     this.guideRobot?.wake();
     await wait(this.reducedMotion ? 20 : 280);
     this.startScale = 0;
-    const position = new THREE.Vector3(0, 4.55, 14.8);
-    const look = new THREE.Vector3(0, 2.05, -4.3);
+    const { position, look } = this.getHubView();
     await this.cameraRig.moveTo(position, look, 1.6, 1.25);
     this.cameraRig.position.copy(position);
     this.cameraRig.look.copy(look);
@@ -444,8 +478,7 @@ export class PortfolioWorld {
   }
 
   activateHub() {
-    const position = new THREE.Vector3(0, 4.55, 14.8);
-    const look = new THREE.Vector3(0, 2.05, -4.3);
+    const { position, look } = this.getHubView();
     this.mode = "hub";
     this.cameraRig.setMode("hub");
     this.cameraRig.snap(position, look);
@@ -468,8 +501,7 @@ export class PortfolioWorld {
     this.hoverIndex = -1;
     this.keys.clear();
     this.cameraRig.setMode("traveling");
-    const position = station.localToWorld(station.userData.cameraAnchor.clone());
-    const look = station.localToWorld(station.userData.lookAnchor.clone());
+    const { position, look } = this.getProjectView(station);
     const robotPosition = station.localToWorld(station.userData.robotAnchor.clone());
     this.guideRobot?.rememberHubPosition();
     this.guideRobot?.setPresentationMode(true);
@@ -487,8 +519,7 @@ export class PortfolioWorld {
     this.cameraRig.setMode("returning");
     this.guideRobot?.setPresentationMode(false);
     this.guideRobot?.returnToHubPosition();
-    const position = new THREE.Vector3(0, 4.55, 14.8);
-    const look = new THREE.Vector3(0, 2.05, -4.3);
+    const { position, look } = this.getHubView();
     await this.cameraRig.moveTo(position, look, 1.3, 2.0);
     this.cameraRig.position.copy(position);
     this.cameraRig.look.copy(look);
@@ -586,7 +617,17 @@ export class PortfolioWorld {
     const height = Math.max(1, this.canvas.clientHeight || innerHeight);
     this.renderer.setSize(width, height, false);
     this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
+    this.setCameraFraming();
+
+    // Orientações podem mudar com a experiência em curso no iPhone. Reposiciona
+    // somente vistas estacionárias; transições continuam até seu destino atual.
+    if (this.mode === "hub") {
+      const { position, look } = this.getHubView();
+      this.cameraRig.snap(position, look);
+    } else if (this.mode === "project" && this.stations[this.activeIndex]) {
+      const { position, look } = this.getProjectView(this.stations[this.activeIndex]);
+      this.cameraRig.snap(position, look);
+    }
   }
 
   update(delta, elapsed) {

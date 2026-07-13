@@ -2,6 +2,13 @@ import * as THREE from "three";
 
 const damp = (current, target, speed, delta) => THREE.MathUtils.lerp(current, target, 1 - Math.exp(-speed * delta));
 
+// Ângulos equivalentes em -PI e PI não devem fazer o guia atravessar quase
+// uma volta inteira. O atan2 normaliza a diferença para o menor arco possível.
+const dampAngle = (current, target, speed, delta) => {
+  const difference = Math.atan2(Math.sin(target - current), Math.cos(target - current));
+  return current + difference * (1 - Math.exp(-speed * delta));
+};
+
 export class GuideRobot {
   constructor(object, accent = new THREE.Color("#b8392c")) {
     this.root = new THREE.Group();
@@ -131,7 +138,7 @@ export class GuideRobot {
     this.root.position.z = damp(this.root.position.z, this.targetPosition.z, movementDamping, delta);
     this.baseY = damp(this.baseY, this.targetPosition.y, movementDamping, delta);
     this.root.position.y = this.baseY + Math.sin(elapsed * 1.25) * 0.055 * this.awake;
-    this.root.rotation.y = damp(this.root.rotation.y, this.targetYaw + this.pointer.x * 0.12, 3.6, delta);
+    this.root.rotation.y = dampAngle(this.root.rotation.y, this.targetYaw + this.pointer.x * 0.12, 3.6, delta);
     this.root.rotation.z = Math.sin(elapsed * 0.72) * 0.025 * this.awake;
     const scale = damp(this.root.scale.x, this.targetScale, 5, delta);
     this.root.scale.setScalar(scale);

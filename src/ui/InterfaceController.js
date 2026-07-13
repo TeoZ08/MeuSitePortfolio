@@ -229,11 +229,14 @@ export class InterfaceController {
       const stop = (event) => {
         event.preventDefault();
         this.callbacks.onIntroMove?.(0, 0);
+        if (button.hasPointerCapture?.(event.pointerId)) button.releasePointerCapture(event.pointerId);
       };
       button.addEventListener("pointerdown", start);
       button.addEventListener("pointerup", stop);
       button.addEventListener("pointercancel", stop);
       button.addEventListener("lostpointercapture", stop);
+      button.addEventListener("contextmenu", (event) => event.preventDefault());
+      button.addEventListener("dragstart", (event) => event.preventDefault());
     });
   }
 }
